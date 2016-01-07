@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="e3a0f5cb-9bf1-4756-8723-d80fcfd220ed" name="ok.crm.debug" url="http://ok.crm.debug">
+        <fileTransfer accessType="LOCAL" />
+      </webServer>
+    </option>
+  </component>
+</project>
