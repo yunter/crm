@@ -72,6 +72,10 @@ class Products extends CRMEntity {
 	 // Josh added for importing and exporting -added in patch2
     var $unit_price;
 
+	var $related_module_table_index = array(
+		'ServiceContracts' => array('table_name' => 'vtiger_servicecontracts', 'table_index' => 'servicecontractsid', 'rel_index' => 'subject'),
+	);
+
 	/**	Constructor which will set the column_fields in this object
 	 */
 	function Products() {
@@ -1173,15 +1177,15 @@ class Products extends CRMEntity {
 				"Quotes"=>"vtiger_inventoryproductrel","PurchaseOrder"=>"vtiger_inventoryproductrel","SalesOrder"=>"vtiger_inventoryproductrel",
 				"Invoice"=>"vtiger_inventoryproductrel","PriceBooks"=>"vtiger_pricebookproductrel","Leads"=>"vtiger_seproductsrel",
 				"Accounts"=>"vtiger_seproductsrel","Potentials"=>"vtiger_seproductsrel","Contacts"=>"vtiger_seproductsrel",
-				"Documents"=>"vtiger_senotesrel",'Assets'=>'vtiger_assets',);
+				"Documents"=>"vtiger_senotesrel",'Assets'=>'vtiger_assets','ServiceContracts'=>'vtiger_servicecontracts');
 
 		$tbl_field_arr = Array("vtiger_troubletickets"=>"ticketid","vtiger_seproductsrel"=>"crmid","vtiger_seattachmentsrel"=>"attachmentsid",
 				"vtiger_inventoryproductrel"=>"id","vtiger_pricebookproductrel"=>"pricebookid","vtiger_seproductsrel"=>"crmid",
-				"vtiger_senotesrel"=>"notesid",'vtiger_assets'=>'assetsid');
+				"vtiger_senotesrel"=>"notesid",'vtiger_assets'=>'assetsid', 'vtiger_servicecontracts'=>'servicecontractsid');
 
 		$entity_tbl_field_arr = Array("vtiger_troubletickets"=>"product_id","vtiger_seproductsrel"=>"crmid","vtiger_seattachmentsrel"=>"crmid",
 				"vtiger_inventoryproductrel"=>"productid","vtiger_pricebookproductrel"=>"productid","vtiger_seproductsrel"=>"productid",
-				"vtiger_senotesrel"=>"crmid",'vtiger_assets'=>'product');
+				"vtiger_senotesrel"=>"crmid",'vtiger_assets'=>'product', 'vtiger_servicecontracts'=>'subject');
 
 		foreach($transferEntityIds as $transferId) {
 			foreach($rel_table_arr as $rel_module=>$rel_table) {
@@ -1276,6 +1280,7 @@ class Products extends CRMEntity {
 			"Products" => array("vtiger_products"=>array("productid","product_id"),"vtiger_products"=>"productid"),
 			"PriceBooks" => array("vtiger_pricebookproductrel"=>array("productid","pricebookid"),"vtiger_products"=>"productid"),
 			"Documents" => array("vtiger_senotesrel"=>array("crmid","notesid"),"vtiger_products"=>"productid"),
+			"ServiceContracts" =>array("vtiger_servicecontracts"=>array("subject","servicecontractsid"),"vtiger_products"=>"productname"),
 		);
 		return $rel_tables[$secmodule];
 	}

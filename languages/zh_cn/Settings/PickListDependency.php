@@ -28,7 +28,7 @@ $languageStrings = array(
 	'PickListDependency' => '选取列表依赖关系',
 	'Module' => '模块',
 	'Source Field' => '源字段',
-	'Target Field' => '目标字段',			
+	'Target Field' => '目标字段',
 );
 
 $jsLanguageStrings = array(

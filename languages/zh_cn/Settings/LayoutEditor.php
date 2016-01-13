@@ -68,6 +68,7 @@ $languageStrings = array(
 	'Text'=>'文本',
 	'Time'=>'时间',
 	'URL' => '链接',
+	'Events' => '事件',
 );
 $jsLanguageStrings = array(
 	'JS_BLOCK_NAME_EXISTS' => '区块名称已存在',

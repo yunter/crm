@@ -66,6 +66,7 @@ class ServiceContracts extends CRMEntity {
 		'Subject' => Array('servicecontracts', 'subject'),
 		'Contract No' => Array('servicecontracts', 'contract_no'),
 		'Assigned To' => Array('vtiger_crmentity','assigned_user_id'),
+		//'参展展会' => Array('vtiger_servicecontractscf','cf_755'),
 		'Used Units' => Array('servicecontracts','used_units'),
 		'Total Units' => Array('servicecontracts','total_units')
 	);
@@ -74,6 +75,7 @@ class ServiceContracts extends CRMEntity {
 		'Subject' => 'subject',
 		'Contract No' => 'contract_no',
 		'Assigned To' => 'assigned_user_id',
+		//'参展展会' => 'cf_755',
 		'Used Units' => 'used_units',
 		'Total Units' => 'total_units'
 	);
@@ -379,6 +381,9 @@ class ServiceContracts extends CRMEntity {
 
 			$conModuleInstance = Vtiger_Module::getInstance('Contacts');
 			$conModuleInstance->setRelatedList($moduleInstance,'Service Contracts',array('add'),'get_dependents_list');
+
+			$conModuleInstance = Vtiger_Module::getInstance('Products');
+			$conModuleInstance->setRelatedList($moduleInstance,'Products', Array('ADD','SELECT'));
 
 			$helpDeskInstance = Vtiger_Module::getInstance("HelpDesk");
 			$helpDeskInstance->setRelatedList($moduleInstance,"Service Contracts",Array('ADD','SELECT'));

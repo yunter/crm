@@ -22,23 +22,21 @@ class Vendors extends CRMEntity {
 	var $column_fields = Array();
 
         //Pavani: Assign value to entity_table
-        var $entity_table = "vtiger_crmentity";
-        var $sortby_fields = Array('vendorname','category');
+	var $entity_table = "vtiger_crmentity";
+	var $sortby_fields = Array('vendorname','cf_751');
 
-        // This is the list of vtiger_fields that are in the lists.
-	var $list_fields = Array(
-                                'Vendor Name'=>Array('vendor'=>'vendorname'),
-                                'Phone'=>Array('vendor'=>'phone'),
-                                'Email'=>Array('vendor'=>'email'),
-                                'Category'=>Array('vendor'=>'category')
-                                );
-        var $list_fields_name = Array(
-                                        'Vendor Name'=>'vendorname',
-                                        'Phone'=>'phone',
-                                        'Email'=>'email',
-                                        'Category'=>'category'
-                                     );
-        var $list_link_field= 'vendorname';
+	// This is the list of vtiger_fields that are in the lists.
+	var $list_fields = Array('Vendor Name'=>Array('vendor'=>'vendorname'),
+		'Phone'=>Array('vendor'=>'phone'),
+		'Email'=>Array('vendor'=>'email'),
+		'cf_751'=>Array('vendor'=>'cf_751')
+	);
+	var $list_fields_name = Array('Vendor Name'=>'vendorname',
+		'Phone'=>'phone',
+		'Email'=>'email',
+		'cf_751'=>'cf_751'
+	);
+	var $list_link_field= 'vendorname';
 
 	var $search_fields = Array(
                                 'Vendor Name'=>Array('vendor'=>'vendorname'),

@@ -51,7 +51,9 @@ abstract class Vtiger_Header_View extends Vtiger_View_Controller {
 		$userModel = Users_Record_Model::getCurrentUserModel();
 		$userEmail = $userModel->get('email1');
 
-		$headerLinks = array(
+		$headerLinks = array();
+		/**
+			array(
 				// Note: This structure is expected to generate side-bar feedback button.
 			array (
 				'linktype' => 'HEADERLINK',
@@ -86,8 +88,8 @@ abstract class Vtiger_Header_View extends Vtiger_View_Controller {
 					)
 				)
 			)
-		);
-		
+		);*/
+
 		if($userModel->isAdminUser()) {
 			$crmSettingsLink = array(
 				'linktype' => 'HEADERLINK',

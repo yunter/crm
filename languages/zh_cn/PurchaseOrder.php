@@ -36,5 +36,5 @@ $languageStrings = array(
 
 $jsLanguageStrings = array(
 	'JS_PLEASE_REMOVE_LINE_ITEM_THAT_IS_DELETED' => '请移除这些已删除的记录。',
-        'JS_PLEASE_ENABLE_PRODUCT_OR_SERVICE_MODULE'=>'请启用产品或服务模块',
+        'JS_PLEASE_ENABLE_PRODUCT_OR_SERVICE_MODULE'=>'请启用展会或服务模块',
 );

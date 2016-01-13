@@ -78,4 +78,5 @@ $languageStrings = array(
 	'Visibility' => '公开程度',	
 	'Weekly'=>'每周',
 	'Yearly'=>'每年',
+	'End Date' => '结束时间',
 );

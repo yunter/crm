@@ -9,7 +9,7 @@
  ************************************************************************************/
 $languageStrings = array(
 	'APPTITLE'                     => 'vtiger CRM'                  , 
-	'POWEREDBY'                    => 'Powered by vtiger CRM'       , 
+	'POWEREDBY'                    => 'Powered by SHINRUN.COM'       ,
 	'LBL_READ_LICENSE'             => 'Leggi la licenza'            , 
 	'LBL_PRIVACY_POLICY'           => 'Privacy Policy'              , 
 	'LBL_SELECT_ALL'               => 'Seleziona Tutti'             , 

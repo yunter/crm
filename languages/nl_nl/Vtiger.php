@@ -19,7 +19,7 @@
  ************************************************************************************/
 $languageStrings = array(
     'APPTITLE'                     => 'vtiger CRM'                  ,
-    'POWEREDBY'                    => 'Powered by vtiger CRM, Vertaald door Vicus',
+    'POWEREDBY'                    => 'Powered by SHINRUN.COM, Vertaald door Vicus',
     'LBL_READ_LICENSE'             => 'Lees Licentie'               ,
     'LBL_PRIVACY_POLICY'           => 'Privacy Policy'              ,
     'LBL_SELECT_ALL'               => 'Selecteer Alles'             ,

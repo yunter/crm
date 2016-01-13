@@ -16,9 +16,13 @@
 
 .bx-wrapper {
     position: relative;
-    margin: 0 auto 60px;
+    margin: 2% auto 60px;
     padding: 0;
     *zoom: 1;
+	height: 290px;
+	overflow:hidden;
+		box-shadow: 0 1px 10px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    border-radius: 4px;
 }
 
 .bx-wrapper img {
@@ -30,13 +34,15 @@
 ===================================*/
 
 .bx-wrapper .bx-viewport {
-    left: -5px;
+    /*left: -5px;*/
+
 }
 
 .bx-wrapper .bx-pager,
 .bx-wrapper .bx-controls-auto {
     position: absolute;
-    bottom: -30px;
+	/*bottom: -30px;*/
+    bottom: 10px;
     width: 100%;
 }
 
@@ -56,12 +62,13 @@
 /* PAGER */
 
 .bx-wrapper .bx-pager {
-    text-align: center;
+    text-align: left;
     font-size: .85em;
     font-family: Arial;
     font-weight: bold;
     color: #666;
     padding-top: 20px;
+	padding-left:20px;
 }
 
 .bx-wrapper .bx-pager .bx-pager-item,
@@ -91,13 +98,16 @@
 /* DIRECTION CONTROLS (NEXT / PREV) */
 
 .bx-wrapper .bx-prev {
-    left: -42px;
+    left: 0;
+	left: 15px\9;
+	/*left: -42px;*/
     background: url(images/controls.png) no-repeat 0 -32px;
     opacity: 0.5;
 }
-
+:root .bx-wrapper .bx-prev {left: 0;}
 .bx-wrapper .bx-next {
-    right: -34px;
+    /*right: -34px;*/
+    right: 0px;
     background: url(images/controls.png) no-repeat -43px -32px;
     opacity: 0.5;
 }
@@ -235,12 +245,12 @@ body{
 .login-area{
     float: left;
     display: inline-block;
-    margin-top: 10%;    
+    margin-top: 2%;
     margin-left: 5%;
 }
 .carousal-container{
     float: right;
-    width: 550px;
+    width: 500px;
     display: inline-block;
 }
 .login-box{
@@ -276,12 +286,8 @@ body{
     margin: 0;
 }
 .slide{
-    padding: 2%;
-    min-width: 550px;
-    min-height: 200px;
-    text-align: center;
-    vertical-align: middle;
-    width: 550px\9;
+    min-width: 500px;
+    width: 500px\9;
 }
 .slide img{
     display: inline-block;
