@@ -33,7 +33,7 @@ $CHAT_DISPLAY = 'true';
 $USE_RTE = 'true';
 
 // helpdesk support email id and support name (Example: 'support@vtiger.com' and 'vtiger support')
-$HELPDESK_SUPPORT_EMAIL_ID = 'doutaer@163.com';
+$HELPDESK_SUPPORT_EMAIL_ID = 'yunter@gmail.com';
 $HELPDESK_SUPPORT_NAME = 'your-support name';
 $HELPDESK_SUPPORT_EMAIL_REPLY_ID = $HELPDESK_SUPPORT_EMAIL_ID;
 
@@ -49,7 +49,7 @@ $HELPDESK_SUPPORT_EMAIL_REPLY_ID = $HELPDESK_SUPPORT_EMAIL_ID;
 $dbconfig['db_server'] = '127.0.0.1';
 $dbconfig['db_port'] = ':3306';
 $dbconfig['db_username'] = 'root';
-$dbconfig['db_password'] = '1234567a';
+$dbconfig['db_password'] = '123456';
 $dbconfig['db_name'] = 'vtigercrm';
 $dbconfig['db_type'] = 'mysqli';
 $dbconfig['db_status'] = 'true';
@@ -86,7 +86,7 @@ $site_URL = 'http://ok.crm.debug/';
 // url for customer portal (Example: http://vtiger.com/portal)
 $PORTAL_URL = $site_URL.'/customerportal';
 // root directory path
-$root_directory = '/Users/yangyong/Workspace/vtigercrm/';
+$root_directory = '/websites/vtigercrm/';
 
 // cache direcory path
 $cache_dir = 'cache/';
@@ -185,7 +185,7 @@ $display_empty_home_blocks = false;
 $disable_stats_tracking = false;
 
 // Generating Unique Application Key
-$application_unique_key = '69047b5228487f725e02a9c633adcca3';
+$application_unique_key = '69047b5228487f709e02a9c323adcca3';
 
 // trim descriptions, titles in listviews to this value
 $listview_max_textlength = 40;
