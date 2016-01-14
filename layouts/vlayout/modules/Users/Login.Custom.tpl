@@ -164,7 +164,7 @@
 					<div class="row-fluid">
 						<div class="span6 pull-left" >
 							<div class="footer-content">
-								<small>&#169 2004-{date('Y')}&nbsp;</small>
+								<small>&#169 {date('Y')}&nbsp;</small>
 							</div>
 						</div>
 						<div class="span6 pull-right" >

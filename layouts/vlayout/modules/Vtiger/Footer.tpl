@@ -27,7 +27,7 @@
                     <div class="vtFooter">
 			<p>
 				{vtranslate('POWEREDBY')} {*$VTIGER_VERSION*} &nbsp;
-				&copy; 2004 - {date('Y')}&nbsp&nbsp;
+				&copy; {date('Y')}&nbsp&nbsp;
 			</p>
                      </div>
 		</footer>

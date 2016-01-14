@@ -661,6 +661,7 @@ $languageStrings = array(
 	'On Hold'=> '中止',
 	'Complete'=> '完成',
 	'Archived'=> '存档',
+	'LBL_EQ_ZERO'=> '无',
 );
 
 $jsLanguageStrings = array(
