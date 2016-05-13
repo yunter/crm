@@ -14,7 +14,7 @@
  * *********************************************************************************** */
 $languageStrings = array(
 	'Actual Duration' => '实际工期（天）',
-	'Contract No' => '合同编号',
+	'Contract No' => '系统编号',
 	'End Date' => '结束日期',
 	'LBL_ADD_RECORD' => '创建服务合同',
 	'LBL_RECORDS_LIST' => '服务合同列表',
@@ -41,4 +41,5 @@ $languageStrings = array(
 	'On Hold'=> '中止',
 	'Complete'=> '完成',
 	'Archived'=> '存档',
+	'Subject' => '展会名称',
 );

@@ -12,8 +12,8 @@
  * All Rights Reserved. 
  *************************************************************************************/
 $languageStrings = array(
-	'Account Name' => '组织名称',
-	'Account No' => '组织编号',	
+	'Account Name' => '公司名称',
+	'Account No' => '系统编号',
 	'Accounts' => '客户',
 	'Analyst'=>'待分析（Analyst）',
 	'Competitor'=>'竞争对手',
@@ -23,16 +23,16 @@ $languageStrings = array(
 	'industry' => '行业',				
 	'Integrator'=>'系统集成商',
 	'Investor'=>'投资人',
-	'LBL_ACCOUNT_INFORMATION' => '组织详细信息',
+	'LBL_ACCOUNT_INFORMATION' => '详细信息',
 	'LBL_ADD_RECORD' => '添加客户',
 	'LBL_COPY_BILLING_ADDRESS' => '复制账单寄送地址',
 	'LBL_COPY_SHIPPING_ADDRESS' => '复制送货地址',
-	'LBL_DUPLICATES_EXIST' => '组织名称已经存在',
+	'LBL_DUPLICATES_EXIST' => '该名称已经存在',
 	'LBL_END_DATE' => '结束日期',
 	'LBL_RECORDS_LIST' => '客户清单',
 	'LBL_SHOW_ACCOUNT_HIERARCHY' => '组织架构',
 	'LBL_START_DATE' => '开始日期',	
-	'Member Of' => '上级组织是',
+	'Member Of' => '上级组织（集团）是',
 	'New This Week' => '本周最新',	
 	'Other Email' => '备用 Email',
 	'Other Phone' => '备用电话',
@@ -45,6 +45,7 @@ $languageStrings = array(
 	'SINGLE_Accounts' => '客户',	
 	'Ticker Symbol' => '股票代码',
 	'Website' => '网站',
+	'LBL_SEND_SMS' => '发手机短信',
 );
 
 $jsLanguageStrings = array(

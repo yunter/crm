@@ -26,7 +26,7 @@ $languageStrings = array(
 	'Annual Revenue' => '年度营收',
 	'Apparel'=>'服饰业', //Duplicated key-value pairs
 	'Approved'=>'已批准',
-	'APPTITLE' => 'vtiger CRM',
+	'APPTITLE' => 'CRM',
 	'Assets' => '资产',
 	'Assigned To'=>'负责人',			
 	'Banking'=>'银行业', //Duplicated key-value pairs
@@ -791,16 +791,18 @@ $jsLanguageStrings = array(
 	'SINGLE_Accounts' => '客户',
 	'SINGLE_Contacts' => '联系人',
     
-        //Promotion translations
-        'JS_HIDE_PROMOTION' => '隐藏促销',
-        'JS_SHOW_PROMOTION' => '显示促销',
-        //Inventory module Translations
-        'JS_PLEASE_ENABLE_PRODUCT_OR_SERVICE_MODULE'=>'请启用展会或者服务模块',
-        'LBL_SYNC_BUTTON' => '同步',
-        'LBL_SYNCRONIZING' => '正在同步',
+	//Promotion translations
+	'JS_HIDE_PROMOTION' => '隐藏促销',
+	'JS_SHOW_PROMOTION' => '显示促销',
+	//Inventory module Translations
+	'JS_PLEASE_ENABLE_PRODUCT_OR_SERVICE_MODULE'=>'请启用展会或者服务模块',
+	'LBL_SYNC_BUTTON' => '同步',
+	'LBL_SYNCRONIZING' => '正在同步',
     
-        'JS_RECORDS_TRANSFERRED_SUCCESSFULLY' => '记录的所有权成功转移。',
+	'JS_RECORDS_TRANSFERRED_SUCCESSFULLY' => '记录的所有权成功转移。',
     
     //Edit view mode Translations
-        'JS_CHANGES_WILL_BE_LOST' => '您的修改将会丢失！',
+	'JS_CHANGES_WILL_BE_LOST' => '您的修改将会丢失！',
+
+	'SMS' => '手机短信',
 );
