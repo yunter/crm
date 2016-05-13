@@ -40,8 +40,9 @@ class Leads extends CRMEntity {
 	var $list_fields = Array(
 		'First Name'=>Array('leaddetails'=>'firstname'),
 		'Last Name'=>Array('leaddetails'=>'lastname'),
-		'Company'=>Array('leaddetails'=>'company'),
 		'Phone'=>Array('leadaddress'=>'phone'),
+		'Company'=>Array('leaddetails'=>'company'),
+		'Rating'=>Array('leaddetails'=>'rating'),
 		'Website'=>Array('leadsubdetails'=>'website'),
 		'Email'=>Array('leaddetails'=>'email'),
 		'Assigned To'=>Array('crmentity'=>'smownerid')
@@ -49,8 +50,9 @@ class Leads extends CRMEntity {
 	var $list_fields_name = Array(
 		'First Name'=>'firstname',
 		'Last Name'=>'lastname',
-		'Company'=>'company',
 		'Phone'=>'phone',
+		'Company'=>'company',
+		'Rating'=>'rating',
 		'Website'=>'website',
 		'Email'=>'email',
 		'Assigned To'=>'assigned_user_id'

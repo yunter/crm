@@ -13,7 +13,7 @@
  */
 class Vtiger_Record_Model extends Vtiger_Base_Model {
 
-	protected $module = false;
+	protected static $module = false;
 
 	/**
 	 * Function to get the id of the record
@@ -48,8 +48,8 @@ class Vtiger_Record_Model extends Vtiger_Base_Model {
 	 * Function to get the Module to which the record belongs
 	 * @return Vtiger_Module_Model
 	 */
-	public function getModule() {
-		return $this->module;
+	public static function getModule() {
+		return self::module;
 	}
 
 	/**

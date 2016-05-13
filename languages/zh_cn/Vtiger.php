@@ -636,18 +636,18 @@ $languageStrings = array(
 	'Website: ' => '网址: ',
 	'Word of mouth'=>'口碑',
     
-        //Promotion translations
-        'LBL_HIDE_PROMOTION' => '隐藏促销',
-        'LBL_SHOW_PROMOTION' => '显示促销',
-        //customerportal forgot password 
-        'LBL_LOGIN_DETAILS' => '登录信息' ,
-        'LBL_USERNAME' => '用户名',
-        'LBL_PASSWORD' => '密码',
-        'LBL_SUBJECT_PORTAL_LOGIN_DETAILS' => '客户门户登录信息',
-         //Patch provided by http://trac.vtiger.com/cgi-bin/trac.cgi/ticket/7884
-        'Users' => '用户', 
-        'Service Requests' => '服务请求', 
-        'Terms &amp; Conditions' => '条款 & 条件', 
+	//Promotion translations
+	'LBL_HIDE_PROMOTION' => '隐藏促销',
+	'LBL_SHOW_PROMOTION' => '显示促销',
+	//customerportal forgot password
+	'LBL_LOGIN_DETAILS' => '登录信息' ,
+	'LBL_USERNAME' => '用户名',
+	'LBL_PASSWORD' => '密码',
+	'LBL_SUBJECT_PORTAL_LOGIN_DETAILS' => '客户门户登录信息',
+	//Patch provided by http://trac.vtiger.com/cgi-bin/trac.cgi/ticket/7884
+	'Users' => '用户',
+	'Service Requests' => '服务请求',
+	'Terms &amp; Conditions' => '条款 & 条件',
 	'LBL_CONVERSION_RATE'    => '汇率',
 	'Due date' => '到期日期',
 	'Normal' => '普通',
@@ -760,7 +760,7 @@ $jsLanguageStrings = array(
 	'JS_SHOULD_BE_GREATER_THAN_CURRENT_DATE' => '应晚于当前日期',
 	'JS_SHOULD_BE_GREATER_THAN_OR_EQUAL_TO' => '应大于或等于',
 	'JS_SHOULD_BE_LESS_THAN_CURRENT_DATE' => '应早于当前日期',
-        'JS_SHOULD_BE_LESS_THAN_OR_EQUAL_TO' => '应小于或等于',
+	'JS_SHOULD_BE_LESS_THAN_OR_EQUAL_TO' => '应小于或等于',
 	'JS_SMS_SERVER_CONFIGURATION' => '请在SMS通知页面配置短信通知设置',
 	'JS_START_DATE_TIME' => '开始日期和时间',
 	'JS_SUCCESSFULLY_PINNED' => '快捷方式添加成功',
@@ -791,16 +791,15 @@ $jsLanguageStrings = array(
 	'SINGLE_Accounts' => '客户',
 	'SINGLE_Contacts' => '联系人',
     
-        //Promotion translations
-        'JS_HIDE_PROMOTION' => '隐藏促销',
-        'JS_SHOW_PROMOTION' => '显示促销',
-        //Inventory module Translations
-        'JS_PLEASE_ENABLE_PRODUCT_OR_SERVICE_MODULE'=>'请启用展会或者服务模块',
-        'LBL_SYNC_BUTTON' => '同步',
-        'LBL_SYNCRONIZING' => '正在同步',
-    
-        'JS_RECORDS_TRANSFERRED_SUCCESSFULLY' => '记录的所有权成功转移。',
+	//Promotion translations
+	'JS_HIDE_PROMOTION' => '隐藏促销',
+	'JS_SHOW_PROMOTION' => '显示促销',
+	//Inventory module Translations
+	'JS_PLEASE_ENABLE_PRODUCT_OR_SERVICE_MODULE'=>'请启用展会或者服务模块',
+	'LBL_SYNC_BUTTON' => '同步',
+	'LBL_SYNCRONIZING' => '正在同步',
+	'JS_RECORDS_TRANSFERRED_SUCCESSFULLY' => '记录的所有权成功转移。',
     
     //Edit view mode Translations
-        'JS_CHANGES_WILL_BE_LOST' => '您的修改将会丢失！',
+	'JS_CHANGES_WILL_BE_LOST' => '您的修改将会丢失！',
 );

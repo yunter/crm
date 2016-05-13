@@ -42,7 +42,7 @@ $languageStrings = array(
 	'LBL_PRICE' => '价格',	
 	'LBL_PRICES' => '展会价格',
 	'LBL_PRODUCT_INFORMATION' => '展会信息',	
-        'LBL_PRODUCTSMOD_DISABLED' => '启用展会模块才能查看展会',
+	'LBL_PRODUCTSMOD_DISABLED' => '启用展会模块才能查看展会',
 	'LBL_RECORDS_LIST' => '展会列表',
 	'LBL_RESET_PRICE' => '重设价格',
 	'LBL_RESET' => '重设',
@@ -77,6 +77,6 @@ $languageStrings = array(
 	'Usage Unit'=>'单位',		
 	'Vendor PartNo'=>'供应商部件编号',
 	'Website' => '网站',
-	'Machinery'=>'机械',
+	'Machinery'=> '机械',
 	'Manufacturing'=>'制造',
 );
