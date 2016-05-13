@@ -15,7 +15,7 @@ class SMSNotifier_ClickATell_Provider implements SMSNotifier_ISMSProvider_Model 
 	private $parameters = array();
 
 	const SERVICE_URI = 'http://api.clickatell.com';
-	private static $REQUIRED_PARAMETERS = array('api_id', 'from', 'mo');
+	private static $REQUIRED_PARAMETERS = array('api_id','unicode');
 
 	/**
 	 * Function to get provider name
@@ -87,7 +87,7 @@ class SMSNotifier_ClickATell_Provider implements SMSNotifier_ISMSProvider_Model 
 	protected function prepareParameters() {
 		$params = array('user' => $this->userName, 'password' => $this->password);
 		foreach (self::$REQUIRED_PARAMETERS as $key) {
-			$params[$key] = $this->getParameter($key);
+			$params[$key] = urlencode($this->getParameter($key));
 		}
 		return $params;
 	}
@@ -98,19 +98,31 @@ class SMSNotifier_ClickATell_Provider implements SMSNotifier_ISMSProvider_Model 
 	 * @param <Mixed> $toNumbers One or Array of numbers
 	 */
 	public function send($message, $toNumbers) {
+		$log =& LoggerManager::getLogger('ClickATell');
 		if(!is_array($toNumbers)) {
 			$toNumbers = array($toNumbers);
 		}
-
+		foreach ($toNumbers as $key => $val) {
+			$toNumbers[$key] = 86 . $val;
+		}
+		$log->debug(json_encode($toNumbers));
 		$params = $this->prepareParameters();
-		$params['text'] = $message;
+		$params['text'] = urlencode($message);
 		$params['to'] = implode(',', $toNumbers);
+		$log->debug('to:' . $params['to']);
 
 		$serviceURL = $this->getServiceURL(self::SERVICE_SEND);
-		$httpClient = new Vtiger_Net_Client($serviceURL);
-		$response = $httpClient->doPost($params);
-		$responseLines = split("\n", $response);
-
+		$paramsUri = '';
+		foreach ($params as $key => $val) {
+			$paramsUri .= $key . '=' . $val . '&';
+		}
+		$log->debug(rtrim($paramsUri, "&"));
+		$response = file_get_contents($serviceURL . "?" . rtrim($paramsUri, "&"));
+		$log->debug($serviceURL . "?" . rtrim($paramsUri, "&"));
+		$log->debug($response);
+		$responseLines = preg_split("/\n/", $response);
+		$log->debug("----------------------------------");
+		$log->debug(json_encode($responseLines));
 		$results = array();
 		$i=0;
 		foreach($responseLines as $responseLine) {
@@ -133,6 +145,7 @@ class SMSNotifier_ClickATell_Provider implements SMSNotifier_ISMSProvider_Model 
 			}
 			$results[] = $result;
 		}
+		$log->debug(json_encode($results));
 		return $results;
 	}
 

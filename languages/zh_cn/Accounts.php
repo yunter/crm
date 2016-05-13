@@ -45,6 +45,7 @@ $languageStrings = array(
 	'SINGLE_Accounts' => '客户',	
 	'Ticker Symbol' => '股票代码',
 	'Website' => '网站',
+	'LBL_SEND_SMS' => '发手机短信',
 );
 
 $jsLanguageStrings = array(
