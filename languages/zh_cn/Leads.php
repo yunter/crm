@@ -57,6 +57,7 @@ $languageStrings = array(
 	'This Month Leads' => '本月线索',
 	'Warm'=>'关系友好',
 	'Website' => '网站',
+	'LBL_SEND_SMS' => '发手机短信',
 );
 $jsLanguageStrings = array(
 	'JS_SELECT_CONTACTS' => '选择联系人继续',
