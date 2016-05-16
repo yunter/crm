@@ -899,6 +899,10 @@ class Vtiger_Field_Model extends Vtiger_Field {
 				$funcName = array('name'=>'mobile');
 				array_push($validator, $funcName);
 				break;
+			case 'company' :
+				$funcName = array('name'=>'company');
+				array_push($validator, $funcName);
+				break;
 			case 'birthday' : $funcName = array('name'=>'lessThanToday');
 							  array_push($validator, $funcName);
 								break;

@@ -1017,17 +1017,102 @@ Vtiger_Base_Validator_Js("Vtiger_mobile_Validator_Js",{
 			this.setError(errorInfo);
 			return false;
 		}
-		var data = {};
-		data['source_module'] = app.getModuleName();
-		data['unique_keyword'] = fieldValue;
-		data['action'] = 'UniqueAjax';
-
-		AppConnector.request(data).then(
+		var thisInstance = this;
+		var data					= {};
+		data['record']				= thisInstance.getURLParam('record');
+		data['source_module'] 	= 'leadaddress';
+		data['field_name'] 		= 'mobile';
+		data['unique_keyword'] 	= fieldValue;
+		data['action'] 			= 'UniqueAjax';
+		thisInstance.ajaxCheck(data).then(
 			function(reponseData){
-				//aDeferred.resolve(reponseData);
-				//alert(reponseData.success);
+				//
+			},
+			function (reponseData, error){
+				alert(reponseData['message']);
+				field.val("");
+				thisInstance.validate();
 			}
 		);
-        return true;
+		return true;
+	},
+
+	ajaxCheck: function(data){
+		var aDeferred 	= jQuery.Deferred();
+		AppConnector.request(data).then(
+			function(reponseData){
+				if(reponseData['result']['success'] == false){
+					aDeferred.reject(reponseData['result']);
+				} else {
+					aDeferred.resolve(reponseData['result']);
+				}
+			}
+		);
+		return aDeferred.promise();
+	},
+
+})
+
+Vtiger_Base_Validator_Js("Vtiger_company_Validator_Js",{
+
+	/**
+	 *Function which invokes field validation
+	 *@param accepts field element as parameter
+	 * @return error if validation fails true on success
+	 */
+	invokeValidation: function(field, rules, i, options){
+		var companyInstance = new Vtiger_company_Validator_Js();
+		companyInstance.setElement(field);
+		var response = companyInstance.validate();
+		if(response != true){
+			return companyInstance.getError();
+		}
 	}
+
+},{
+
+	/**
+	 * Function to validate the company Name
+	 * @return true if validation is successfull
+	 * @return false if validation error occurs
+	 */
+	validate: function(){
+		var field = this.getElement();
+		var fieldValue = field.val();
+		var thisInstance = this;
+		var data					= {};
+		data['record']				= thisInstance.getURLParam('record');
+		data['source_module'] 	= 'leaddetails';
+		data['field_name'] 		= 'company';
+		data['unique_keyword'] 	= fieldValue;
+		data['action'] 			= 'UniqueAjax';
+		if(fieldValue != '') {
+			thisInstance.ajaxCheck(data).then(
+				function(reponseData){
+					//
+				},
+				function (reponseData, error){
+					alert(reponseData['message']);
+					field.val("");
+					thisInstance.validate();
+				}
+			);
+
+			return true;
+		}
+	},
+
+	ajaxCheck: function(data){
+		var aDeferred 	= jQuery.Deferred();
+		AppConnector.request(data).then(
+			function(reponseData){
+				if(reponseData['result']['success'] == false){
+					aDeferred.reject(reponseData['result']);
+				} else {
+					aDeferred.resolve(reponseData['result']);
+				}
+			}
+		);
+		return aDeferred.promise();
+	},
 })
