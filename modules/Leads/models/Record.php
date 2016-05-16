@@ -25,7 +25,7 @@ class Leads_Record_Model extends Vtiger_Record_Model {
 	public static function getSearchResult($searchKey, $module=false) {
 		$db = PearDatabase::getInstance();
 
-		$deletedCondition = self::getModule()->getDeletedRecordCondition();
+		$deletedCondition = parent::getModule()->getDeletedRecordCondition();
 		$query = 'SELECT * FROM vtiger_crmentity
                     INNER JOIN vtiger_leaddetails ON vtiger_leaddetails.leadid = vtiger_crmentity.crmid
                     WHERE label LIKE ? AND '.$deletedCondition;
@@ -66,28 +66,28 @@ class Leads_Record_Model extends Vtiger_Record_Model {
 		$moduleModel = Vtiger_Module_Model::getInstance($moduleName);
 		if ($moduleModel->isActive()) {
 			$fieldModels = $moduleModel->getFields();
-            //Fields that need to be shown
-            $complusoryFields = array('industry');
+			//Fields that need to be shown
+			$complusoryFields = array('industry');
 			foreach ($fieldModels as $fieldName => $fieldModel) {
 				if($fieldModel->isMandatory() && $fieldName != 'assigned_user_id') {
-                    $keyIndex = array_search($fieldName,$complusoryFields);
-                    if($keyIndex !== false) {
-                        unset($complusoryFields[$keyIndex]);
-                    }
+					$keyIndex = array_search($fieldName,$complusoryFields);
+					if($keyIndex !== false) {
+						unset($complusoryFields[$keyIndex]);
+					}
 					$leadMappedField = $this->getConvertLeadMappedField($fieldName, $moduleName);
 					$fieldModel->set('fieldvalue', $this->get($leadMappedField));
 					$accountsFields[] = $fieldModel;
 				}
 			}
-            foreach($complusoryFields as $complusoryField) {
-                $fieldModel = Vtiger_Field_Model::getInstance($complusoryField, $moduleModel);
+			foreach($complusoryFields as $complusoryField) {
+				$fieldModel = Vtiger_Field_Model::getInstance($complusoryField, $moduleModel);
 				if($fieldModel->getPermissions('readwrite')) {
-                    $industryFieldModel = $moduleModel->getField($complusoryField);
-                    $industryLeadMappedField = $this->getConvertLeadMappedField($complusoryField, $moduleName);
-                    $industryFieldModel->set('fieldvalue', $this->get($industryLeadMappedField));
-                    $accountsFields[] = $industryFieldModel;
-                }
-            }
+					$industryFieldModel = $moduleModel->getField($complusoryField);
+					$industryLeadMappedField = $this->getConvertLeadMappedField($complusoryField, $moduleName);
+					$industryFieldModel->set('fieldvalue', $this->get($industryLeadMappedField));
+					$accountsFields[] = $industryFieldModel;
+				}
+			}
 		}
 		return $accountsFields;
 	}
@@ -108,26 +108,26 @@ class Leads_Record_Model extends Vtiger_Record_Model {
 		$moduleModel = Vtiger_Module_Model::getInstance($moduleName);
 		if ($moduleModel->isActive()) {
 			$fieldModels = $moduleModel->getFields();
-            $complusoryFields = array('firstname', 'email');
-            foreach($fieldModels as $fieldName => $fieldModel) {
-                if($fieldModel->isMandatory() &&  $fieldName != 'assigned_user_id' && $fieldName != 'account_id') {
-                    $keyIndex = array_search($fieldName,$complusoryFields);
-                    if($keyIndex !== false) {
-                        unset($complusoryFields[$keyIndex]);
-                    }
+			$complusoryFields = array('firstname', 'email');
+			foreach($fieldModels as $fieldName => $fieldModel) {
+				if($fieldModel->isMandatory() &&  $fieldName != 'assigned_user_id' && $fieldName != 'account_id') {
+					$keyIndex = array_search($fieldName,$complusoryFields);
+					if($keyIndex !== false) {
+						unset($complusoryFields[$keyIndex]);
+					}
 
-                    $leadMappedField = $this->getConvertLeadMappedField($fieldName, $moduleName);
-                    $fieldValue = $this->get($leadMappedField);
-                    if ($fieldName === 'account_id') {
-                        $fieldValue = $this->get('company');
-                    }
-                    $fieldModel->set('fieldvalue', $fieldValue);
-                    $contactsFields[] = $fieldModel;
-                }
-            }
+					$leadMappedField = $this->getConvertLeadMappedField($fieldName, $moduleName);
+					$fieldValue = $this->get($leadMappedField);
+					if ($fieldName === 'account_id') {
+						$fieldValue = $this->get('company');
+					}
+					$fieldModel->set('fieldvalue', $fieldValue);
+					$contactsFields[] = $fieldModel;
+				}
+			}
 
 			foreach($complusoryFields as $complusoryField) {
-                $fieldModel = Vtiger_Field_Model::getInstance($complusoryField, $moduleModel);
+				$fieldModel = Vtiger_Field_Model::getInstance($complusoryField, $moduleModel);
 				if($fieldModel->getPermissions('readwrite')) {
 					$leadMappedField = $this->getConvertLeadMappedField($complusoryField, $moduleName);
 					$fieldModel = $moduleModel->getField($complusoryField);
@@ -156,28 +156,28 @@ class Leads_Record_Model extends Vtiger_Record_Model {
 		if ($moduleModel->isActive()) {
 			$fieldModels = $moduleModel->getFields();
 
-            $complusoryFields = array('amount');
+			$complusoryFields = array('amount');
 			foreach($fieldModels as $fieldName => $fieldModel) {
 				if($fieldModel->isMandatory() &&  $fieldName != 'assigned_user_id' && $fieldName != 'related_to'
-						&& $fieldName != 'contact_id') {
-                    $keyIndex = array_search($fieldName,$complusoryFields);
-                    if($keyIndex !== false) {
-                        unset($complusoryFields[$keyIndex]);
-                    }
+					&& $fieldName != 'contact_id') {
+					$keyIndex = array_search($fieldName,$complusoryFields);
+					if($keyIndex !== false) {
+						unset($complusoryFields[$keyIndex]);
+					}
 					$leadMappedField = $this->getConvertLeadMappedField($fieldName, $moduleName);
 					$fieldModel->set('fieldvalue', $this->get($leadMappedField));
 					$potentialFields[] = $fieldModel;
 				}
 			}
-            foreach($complusoryFields as $complusoryField) {
-                $fieldModel = Vtiger_Field_Model::getInstance($complusoryField, $moduleModel);
-                if($fieldModel->getPermissions('readwrite')) {
-                    $fieldModel = $moduleModel->getField($complusoryField);
-                    $amountLeadMappedField = $this->getConvertLeadMappedField($complusoryField, $moduleName);
-                    $fieldModel->set('fieldvalue', $this->get($amountLeadMappedField));
-                    $potentialFields[] = $fieldModel;
-                }
-            }
+			foreach($complusoryFields as $complusoryField) {
+				$fieldModel = Vtiger_Field_Model::getInstance($complusoryField, $moduleModel);
+				if($fieldModel->getPermissions('readwrite')) {
+					$fieldModel = $moduleModel->getField($complusoryField);
+					$amountLeadMappedField = $this->getConvertLeadMappedField($complusoryField, $moduleName);
+					$fieldModel->set('fieldvalue', $this->get($amountLeadMappedField));
+					$potentialFields[] = $fieldModel;
+				}
+			}
 		}
 		return $potentialFields;
 	}
@@ -275,21 +275,21 @@ class Leads_Record_Model extends Vtiger_Record_Model {
 		$calendarModuleModel = Vtiger_Module_Model::getInstance('Calendar');
 		return $calendarModuleModel->getCreateTaskRecordUrl().'&parent_id='.$this->getId();
 	}
-    
-    /**
+
+	/**
 	 * Function to check whether the lead is converted or not
 	 * @return True if the Lead is Converted false otherwise.
 	 */
-    function isLeadConverted() {
-        $db = PearDatabase::getInstance();
-        $id = $this->getId();
-        $sql = "select converted from vtiger_leaddetails where converted = 1 and leadid=?";
-        $result = $db->pquery($sql,array($id));
-        $rowCount = $db->num_rows($result);
-        if($rowCount > 0){
-            return true;
-        }
-        return false;
-    }
+	function isLeadConverted() {
+		$db = PearDatabase::getInstance();
+		$id = $this->getId();
+		$sql = "select converted from vtiger_leaddetails where converted = 1 and leadid=?";
+		$result = $db->pquery($sql,array($id));
+		$rowCount = $db->num_rows($result);
+		if($rowCount > 0){
+			return true;
+		}
+		return false;
+	}
 
 }

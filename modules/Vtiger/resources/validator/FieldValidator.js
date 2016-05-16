@@ -1093,7 +1093,7 @@ Vtiger_Base_Validator_Js("Vtiger_company_Validator_Js",{
 				},
 				function (reponseData, error){
 					alert(reponseData['message']);
-					field.val("");
+					field.val(app.vtranslate("JS_Duplicate") + ': '+ fieldValue);
 					thisInstance.validate();
 				}
 			);

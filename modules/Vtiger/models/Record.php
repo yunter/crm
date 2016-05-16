@@ -13,7 +13,7 @@
  */
 class Vtiger_Record_Model extends Vtiger_Base_Model {
 
-	protected static $module = false;
+	protected $module = false;
 
 	/**
 	 * Function to get the id of the record
@@ -48,8 +48,8 @@ class Vtiger_Record_Model extends Vtiger_Base_Model {
 	 * Function to get the Module to which the record belongs
 	 * @return Vtiger_Module_Model
 	 */
-	public static function getModule() {
-		return self::module;
+	public function getModule() {
+		return $this->module;
 	}
 
 	/**
@@ -178,22 +178,22 @@ class Vtiger_Record_Model extends Vtiger_Base_Model {
 			$recordId = $this->getId();
 		}
 		$fieldModel = $this->getModule()->getField($fieldName);
-       
-        // For showing the "Date Sent" and "Time Sent" in email related list in user time zone
-        if($fieldName == "time_start" && $this->getModule()->getName() == "Emails"){
-            $date = new DateTime();
-            $dateTime = new DateTimeField($date->format('Y-m-d').' '.$this->get($fieldName));
-            $value = $dateTime->getDisplayTime();
-            $this->set($fieldName, $value);
-            return $value;
-        }else if($fieldName == "date_start" && $this->getModule()->getName() == "Emails"){
-            $dateTime = new DateTimeField($this->get($fieldName).' '.$this->get('time_start'));
-            $value = $dateTime->getDisplayDate();
-            $this->set($fieldName, $value);
-            return $value;
-        }
-        // End
-        
+
+		// For showing the "Date Sent" and "Time Sent" in email related list in user time zone
+		if($fieldName == "time_start" && $this->getModule()->getName() == "Emails"){
+			$date = new DateTime();
+			$dateTime = new DateTimeField($date->format('Y-m-d').' '.$this->get($fieldName));
+			$value = $dateTime->getDisplayTime();
+			$this->set($fieldName, $value);
+			return $value;
+		}else if($fieldName == "date_start" && $this->getModule()->getName() == "Emails"){
+			$dateTime = new DateTimeField($this->get($fieldName).' '.$this->get('time_start'));
+			$value = $dateTime->getDisplayDate();
+			$this->set($fieldName, $value);
+			return $value;
+		}
+		// End
+
 		if($fieldModel) {
 			return $fieldModel->getDisplayValue($this->get($fieldName), $recordId, $this);
 		}

@@ -126,7 +126,7 @@ $languageStrings = array(
    	'LBL_ADD_CC' => '添加抄送',
 	'LBL_ADD_COMMENT' => '添加评论',	
 	'LBL_ADD_CONDITION' => '添加条件', //Duplicated key-value pairs
-	'LBL_ADD_EVENT' => '添加事件',	
+	'LBL_ADD_EVENT' => '添加事件',
 	'LBL_ADD_GROUP' => '添加条件组', //Duplicated key-value pairs
 	'LBL_ADD_MANAGE_MODULES' => '添加 / 管理模块',
 	'LBL_ADD_MORE_COLUMNS' => '添加更多列',
@@ -805,4 +805,5 @@ $jsLanguageStrings = array(
     
     //Edit view mode Translations
 	'JS_CHANGES_WILL_BE_LOST' => '您的修改将会丢失！',
+	'JS_Duplicate' => '重复',
 );
