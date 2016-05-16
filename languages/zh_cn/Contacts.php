@@ -61,7 +61,7 @@ $languageStrings = array(
 	'Date of Birth'=>'出生日期',
 	'Contacts Address' => '联系人地址簿',
 	'Email' => '常用Email',
-        'Google Contacts' => 'Google 联系人',
+	'Google Contacts' => 'Google 联系人',
 	'Other Phone' => '备用电话',
 	'Secondary Email' => '备用 Email',
 	'Todays Birthday' => '今天生日',	
@@ -75,6 +75,6 @@ $jsLanguageStrings = array(
         'LBL_SYNC_BUTTON' => '现在同步',
         'LBL_SYNCRONIZING' => '正在同步...',
         'LBL_NOT_SYNCRONIZED' => '尚未同步',	
-	'LBL_FIELD_MAPPING'   => '字段映射',
-	'JS_SUITABLE_VTIGER_FIELD_NOT_AVAILABLE_FOR_MAPPING' => 'Vtiger 字段不可用于映射',			
+		'LBL_FIELD_MAPPING'   => '字段映射',
+		'JS_SUITABLE_VTIGER_FIELD_NOT_AVAILABLE_FOR_MAPPING' => 'Vtiger 字段不可用于映射',
  );

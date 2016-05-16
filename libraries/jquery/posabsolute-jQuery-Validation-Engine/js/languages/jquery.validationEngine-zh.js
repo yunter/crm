@@ -6,7 +6,7 @@
             $.validationEngineLanguage.allRules = {
                 "required": { // Add your regex rules here, you can take telephone as an example
                     "regex": "none",
-                    "alertText": "* 此处不可空白",
+                    "alertText": "* 此处为必填项",
                     "alertTextCheckboxMultiple": "* 请选择一个项目",
                     "alertTextCheckboxe": "* 您必须钩选此栏",
                     "alertTextDateRange": "* 日期范围不可空白"
@@ -79,6 +79,10 @@
                     // credit: jquery.h5validate.js / orefalo
                     "regex": /^([\+][0-9]{1,3}[ \.\-])?([\(]{1}[0-9]{2,6}[\)])?([0-9 \.\-\/]{3,20})((x|ext|extension)[ ]?[0-9]{1,4})?$/,
                     "alertText": "* 无效的电话号码"
+                },
+                "mobile": {
+                    "regex": /^((13|15|18|14)[0-9]{9}|17[7608][0-9]{8})$/,
+                    "alertText": "* 无效的手机号码"
                 },
                 "email": {
                     // Shamelessly lifted from Scott Gonzalez via the Bassistance Validation plugin http://projects.scottsplayground.com/email_address_validation/

@@ -35,19 +35,18 @@ class Contacts extends CRMEntity {
 
 	var $column_fields = Array();
 
-	var $sortby_fields = Array('lastname','firstname','title','email','phone','smownerid','accountname');
+	var $sortby_fields = Array('firstname','lastname','title','email','phone','smownerid','accountname');
 
 	var $list_link_field= 'lastname';
 
 	// This is the list of vtiger_fields that are in the lists.
 	var $list_fields = Array(
-	'First Name' => Array('contactdetails'=>'firstname'),
-	'Last Name' => Array('contactdetails'=>'lastname'),
-	'Title' => Array('contactdetails'=>'title'),
-	'Account Name' => Array('account'=>'accountid'),
-	'Email' => Array('contactdetails'=>'email'),
-	'Office Phone' => Array('contactdetails'=>'phone'),
-	'Assigned To' => Array('crmentity'=>'smownerid')
+		'First Name' => Array('contactdetails'=>'firstname'),
+		'Title' => Array('contactdetails'=>'title'),
+		'Account Name' => Array('account'=>'accountid'),
+		'Email' => Array('contactdetails'=>'email'),
+		'Office Phone' => Array('contactdetails'=>'phone'),
+		'Assigned To' => Array('crmentity'=>'smownerid')
 	);
 
 	var $range_fields = Array(
@@ -84,29 +83,29 @@ class Contacts extends CRMEntity {
 
 
 	var $list_fields_name = Array(
-	'First Name' => 'firstname',
-	'Last Name' => 'lastname',
-	'Title' => 'title',
-	'Account Name' => 'account_id',
-	'Email' => 'email',
-	'Office Phone' => 'phone',
-	'Assigned To' => 'assigned_user_id'
+		'First Name' => 'firstname',
+		'Last Name' => 'lastname',
+		'Title' => 'title',
+		'Account Name' => 'account_id',
+		'Email' => 'email',
+		'Office Phone' => 'phone',
+		'Assigned To' => 'assigned_user_id'
 	);
 
 	var $search_fields = Array(
-	'First Name' => Array('contactdetails'=>'firstname'),
-	'Last Name' => Array('contactdetails'=>'lastname'),
-	'Title' => Array('contactdetails'=>'title'),
-	'Account Name'=>Array('contactdetails'=>'account_id'),
-	'Assigned To'=>Array('crmentity'=>'smownerid'),
+		'First Name' => Array('contactdetails'=>'firstname'),
+		'Last Name' => Array('contactdetails'=>'lastname'),
+		'Title' => Array('contactdetails'=>'title'),
+		'Account Name'=>Array('contactdetails'=>'account_id'),
+		'Assigned To'=>Array('crmentity'=>'smownerid'),
 		);
 
 	var $search_fields_name = Array(
-	'First Name' => 'firstname',
-	'Last Name' => 'lastname',
-	'Title' => 'title',
-	'Account Name'=>'account_id',
-	'Assigned To'=>'assigned_user_id'
+		'First Name' => 'firstname',
+		'Last Name' => 'lastname',
+		'Title' => 'title',
+		'Account Name'=>'account_id',
+		'Assigned To'=>'assigned_user_id'
 	);
 
 	// This is the list of vtiger_fields that are required

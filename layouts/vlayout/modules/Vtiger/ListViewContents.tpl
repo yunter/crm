@@ -64,7 +64,7 @@
 					<input type="checkbox" id="listViewEntriesMainCheckBox" />
 				</th>
 				{foreach item=LISTVIEW_HEADER from=$LISTVIEW_HEADERS}
-				<th nowrap {if $LISTVIEW_HEADER@last} colspan="2" {/if}>
+				<th nowrap {if $LISTVIEW_HEADER@last} colspan="2" {/if} {if (($LISTVIEW_HEADER->get('column') == 'firstname') || ($LISTVIEW_HEADER->get('column') == 'lastname'))} width="11%" {/if}>
 					<a href="javascript:void(0);" class="listViewHeaderValues" data-nextsortorderval="{if $COLUMN_NAME eq $LISTVIEW_HEADER->get('column')}{$NEXT_SORT_ORDER}{else}ASC{/if}" data-columnname="{$LISTVIEW_HEADER->get('column')}">{vtranslate($LISTVIEW_HEADER->get('label'), $MODULE)}
 						&nbsp;&nbsp;{if $COLUMN_NAME eq $LISTVIEW_HEADER->get('column')}<img class="{$SORT_IMAGE} icon-white">{/if}</a>
 				</th>
@@ -122,7 +122,7 @@
 							<a class="deleteRecordButton"><i title="{vtranslate('LBL_DELETE', $MODULE)}" class="icon-trash alignMiddle"></i></a>
 						{/if}
 					</span>
-				</div></td>
+				</div>
 				{/if}
 			</td>
 			{/foreach}

@@ -11,7 +11,7 @@
 class ModComments_SaveAjax_Action extends Vtiger_SaveAjax_Action {
 
 	public function checkPermission(Vtiger_Request $request) {
-		$moduleName = $request->getModule();
+		//$moduleName = $request->getModule();
 		$record = $request->get('record');
 		//Do not allow ajax edit of existing comments
 		if ($record) {

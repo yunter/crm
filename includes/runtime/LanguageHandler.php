@@ -167,7 +167,7 @@ class Vtiger_Language_Handler {
         if (!empty($userModel)) {
             $language = $userModel->get('language');
         }
-        return empty($language) ? vglobal('default_language') : $language;
+        return empty($language) ? strtolower(vglobal('default_language')): strtolower($language);
     }
 
     /**

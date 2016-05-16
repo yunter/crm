@@ -948,3 +948,86 @@ Vtiger_Base_Validator_Js("Vtiger_AlphaNumeric_Validator_Js",{
         return true;
 	}
 })
+
+Vtiger_Base_Validator_Js("Vtiger_phone_Validator_Js",{
+
+	/**
+	 *Function which invokes field validation
+	 *@param accepts field element as parameter
+	 * @return error if validation fails true on success
+	 */
+	invokeValidation: function(field, rules, i, options){
+		var phoneInstance = new Vtiger_phone_Validator_Js();
+		phoneInstance.setElement(field);
+		var response = phoneInstance.validate();
+		if(response != true){
+			return phoneInstance.getError();
+		}
+	}
+
+},{
+
+	/**
+	 * Function to validate the Positive Numbers
+	 * @return true if validation is successfull
+	 * @return false if validation error occurs
+	 */
+	validate: function(){
+		var field = this.getElement();
+		var fieldValue = field.val();
+		var phoneRegex = /^((0\d{2,3}-\d{7,8})|((13|15|18|14)[0-9]{9})|17[7608][0-9]{8})$/;
+		if (!fieldValue.match(phoneRegex)) {
+			var errorInfo = app.vtranslate("JS_PHONE_ERROR");
+			this.setError(errorInfo);
+			return false;
+		}
+        return true;
+	}
+})
+
+Vtiger_Base_Validator_Js("Vtiger_mobile_Validator_Js",{
+
+	/**
+	 *Function which invokes field validation
+	 *@param accepts field element as parameter
+	 * @return error if validation fails true on success
+	 */
+	invokeValidation: function(field, rules, i, options){
+		var mobileInstance = new Vtiger_mobile_Validator_Js();
+		mobileInstance.setElement(field);
+		var response = mobileInstance.validate();
+		if(response != true){
+			return mobileInstance.getError();
+		}
+	}
+
+},{
+
+	/**
+	 * Function to validate the mobile Numbers
+	 * @return true if validation is successfull
+	 * @return false if validation error occurs
+	 */
+	validate: function(){
+		var field = this.getElement();
+		var fieldValue = field.val();
+		var mobileRegex = /^((13|15|18|14)[0-9]{9}|17[7608][0-9]{8})$/;
+		if (!fieldValue.match(mobileRegex)) {
+			var errorInfo = app.vtranslate("JS_MOBILE_ERROR");
+			this.setError(errorInfo);
+			return false;
+		}
+		var data = {};
+		data['source_module'] = app.getModuleName();
+		data['unique_keyword'] = fieldValue;
+		data['action'] = 'UniqueAjax';
+
+		AppConnector.request(data).then(
+			function(reponseData){
+				//aDeferred.resolve(reponseData);
+				//alert(reponseData.success);
+			}
+		);
+        return true;
+	}
+})

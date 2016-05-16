@@ -31,7 +31,7 @@ class Leads extends CRMEntity {
 
 	//construct this from database;
 	var $column_fields = Array();
-	var $sortby_fields = Array('lastname','firstname','email','phone','company','smownerid','website');
+	var $sortby_fields = Array('firstname','lastname','email','phone','company','smownerid','website');
 
 	// This is used to retrieve related vtiger_fields from form posts.
 	var $additional_column_fields = Array('smcreatorid', 'smownerid', 'contactid','potentialid' ,'crmid');

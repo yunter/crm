@@ -883,6 +883,22 @@ class Vtiger_Field_Model extends Vtiger_Field {
 		$validator = array();
 		$fieldName = $this->getName();
 		switch($fieldName) {
+			case 'phone':
+				$funcName = array('name'=>'phone');
+				array_push($validator, $funcName);
+				break;
+			case 'fax':
+				$funcName = array('name'=>'phone');
+				array_push($validator, $funcName);
+				break;
+			case 'otherphone' :
+				$funcName = array('name'=>'phone');
+				array_push($validator, $funcName);
+				break;
+			case 'mobile' :
+				$funcName = array('name'=>'mobile');
+				array_push($validator, $funcName);
+				break;
 			case 'birthday' : $funcName = array('name'=>'lessThanToday');
 							  array_push($validator, $funcName);
 								break;
