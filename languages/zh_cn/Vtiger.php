@@ -662,6 +662,7 @@ $languageStrings = array(
 	'Complete'=> '完成',
 	'Archived'=> '存档',
 	'LBL_EQ_ZERO'=> '无',
+	'LBL_RECORD_EXIST'=> '重复记录，请核实后再输入',
 );
 
 $jsLanguageStrings = array(
