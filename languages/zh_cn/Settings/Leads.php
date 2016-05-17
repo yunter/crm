@@ -5,7 +5,7 @@
  * The Original Code is:  vtiger CRM Open Source
  * The Initial Developer of the Original Code is vtiger.
  * Portions created by vtiger are Copyright (C) vtiger.
- * 简体中文语言包 - 潜在客户映射
+ * 简体中文语言包 - 资源映射
  * 版本: 6.1.0 
  * 作者: Maie | www.maie.name
  * 更新日期: 2014-08-28
@@ -19,7 +19,7 @@ $languageStrings = array(
 	'email' => 'Email',
 	'LBL_ADD_MAPPING' => '添加映射',
 	'LBL_CONTACTS' => '联系人',
-	'LBL_CONVERT_LEAD_FIELD_MAPPING' => '转换潜在客户映射',
+	'LBL_CONVERT_LEAD_FIELD_MAPPING' => '转换资源映射',
 	'LBL_DELETED_SUCCESSFULLY' => '删除成功',
 	'LBL_FIELD_LABEL' => '字段标签',
 	'LBL_FIELD_TYPE' => '字段类型',

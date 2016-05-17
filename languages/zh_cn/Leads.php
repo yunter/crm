@@ -5,7 +5,7 @@
  * The Original Code is:  vtiger CRM Open Source
  * The Initial Developer of the Original Code is vtiger.
  * Portions created by vtiger are Copyright (C) vtiger.
- * 简体中文语言包 - 潜在客户线索
+ * 简体中文语言包 - 资源线索
  * 版本: 6.2.0 
  * 作者: Maie | www.maie.name
  * 更新日期: 2015-02-02
@@ -25,20 +25,20 @@ $languageStrings = array(
 	'Hot Leads'=>'关系火热的线索',	
 	'Industry' => '行业',	
 	'Junk Lead'=>'无用的线索',
-	'LBL_ADD_RECORD' => '添加潜在客户',	
-	'LBL_CONVERT_LEAD' => '转换潜在客户线索',
+	'LBL_ADD_RECORD' => '添加资源',
+	'LBL_CONVERT_LEAD' => '转换资源为客户',
 	'LBL_CONVERT_LEAD_ERROR_TITLE' => '模块禁用',							
 	'LBL_CONVERT_LEAD_ERROR' => '必须勾选组织或联系人才能转换',
 	'LBL_CUSTOM_FIELD_MAPPING'=> '编辑字段映射',
 	'LBL_FOLLOWING_ARE_POSSIBLE_REASONS' => '可能的原因包括：',
-	'LBL_LEAD_INFORMATION' => '潜在客户信息',
-	'LBL_LEADS_FIELD_MAPPING_INCOMPLETE' => '潜在客户字段映射不完整（设置 > 模块管理 > 潜在客户 > 潜在客户字段管理)',	
-	'LBL_LEADS_FIELD_MAPPING' => '潜在客户字段映射',			
+	'LBL_LEAD_INFORMATION' => '资源信息',
+	'LBL_LEADS_FIELD_MAPPING_INCOMPLETE' => '资源字段映射不完整（设置 > 模块管理 > 资源 > 资源字段管理)',	
+	'LBL_LEADS_FIELD_MAPPING' => '资源字段映射',			
 	'LBL_MANDATORY_FIELDS_ARE_EMPTY' => '必填字段为空',
-	'LBL_RECORDS_LIST' => '潜在客户列表',
+	'LBL_RECORDS_LIST' => '资源列表',
 	'LBL_TRANSFER_RELATED_RECORD' => '相关记录转移到',
 	'Lead No' => '编号',
-	'Leads' => '潜在客户',
+	'Leads' => '资源',
 	'Lead Status' => '线索状态',
 	'Lost Lead'=>'失去线索',
 	'Mr.'=>'先生',
@@ -53,7 +53,7 @@ $languageStrings = array(
 	'Prof.'=>'教授',	
 	'Qualified'=>'合格',
 	'Secondary Email' => '备用 Email',
-	'SINGLE_Leads' => '潜在客户线索',
+	'SINGLE_Leads' => '资源线索',
 	'This Month Leads' => '本月线索',
 	'Warm'=>'关系友好',
 	'Website' => '网站',

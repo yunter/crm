@@ -112,11 +112,13 @@ class SMSNotifier_ClickATell_Provider implements SMSNotifier_ISMSProvider_Model 
 		$log->debug('to:' . $params['to']);
 
 		$serviceURL = $this->getServiceURL(self::SERVICE_SEND);
+		//$httpClient = new Vtiger_Net_Client($serviceURL);
 		$paramsUri = '';
 		foreach ($params as $key => $val) {
 			$paramsUri .= $key . '=' . $val . '&';
 		}
 		$log->debug(rtrim($paramsUri, "&"));
+
 		$response = file_get_contents($serviceURL . "?" . rtrim($paramsUri, "&"));
 		$log->debug($serviceURL . "?" . rtrim($paramsUri, "&"));
 		$log->debug($response);

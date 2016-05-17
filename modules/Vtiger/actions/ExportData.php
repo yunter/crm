@@ -10,6 +10,9 @@
 
 class Vtiger_ExportData_Action extends Vtiger_Mass_Action {
 
+	public $moduleInstance;
+	public $focus;
+
 	function checkPermission(Vtiger_Request $request) {
 		$moduleName = $request->getModule();
 		$moduleModel = Vtiger_Module_Model::getInstance($moduleName);
@@ -27,9 +30,6 @@ class Vtiger_ExportData_Action extends Vtiger_Mass_Action {
 	function process(Vtiger_Request $request) {
 		$this->ExportData($request);
 	}
-
-	private $moduleInstance;
-	private $focus;
 
 	/**
 	 * Function exports the data based on the mode
@@ -63,7 +63,6 @@ class Vtiger_ExportData_Action extends Vtiger_Mass_Action {
 		}
 		$translatedHeaders = array();
 		foreach($headers as $header) $translatedHeaders[] = vtranslate(html_entity_decode($header, ENT_QUOTES), $moduleName);
-
 		$entries = array();
 		for($j=0; $j<$db->num_rows($result); $j++) {
 			$entries[] = $this->sanitizeValues($db->fetchByAssoc($result, $j));
@@ -170,16 +169,16 @@ class Vtiger_ExportData_Action extends Vtiger_Mass_Action {
 		header("Last-Modified: " . gmdate("D, d M Y H:i:s") . " GMT" );
 		header("Cache-Control: post-check=0, pre-check=0", false );
 
-		$header = implode("\", \"", $headers);
-		$header = "\"" .$header;
-		$header .= "\"\r\n";
-		echo $header;
+		$header = implode(", ", $headers);
+		$header = "" .$header;
+		$header .= "\r\n";
+		echo iconv('utf-8', 'gbk', $header);
 
 		foreach($entries as $row) {
-			$line = implode("\",\"",$row);
-			$line = "\"" .$line;
-			$line .= "\"\r\n";
-			echo $line;
+			$line = implode(",",$row);
+			$line = "" .$line;
+			$line .= "\r\n";
+			echo iconv('utf-8', 'gbk', $line);
 		}
 	}
 
