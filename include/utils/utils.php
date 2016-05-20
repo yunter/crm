@@ -2296,4 +2296,27 @@ function getCompanyDetails() {
 function lower_array(&$string){
 		$string = strtolower(trim($string));
 }
+
+/**
+ * get lead exclusive counts
+ * @param null $userid
+ * @return int|mixed
+ */
+function GetExclusiveCounts($userid = null) {
+	global $log;
+	$log->debug('GetExclusiveCounts start.');
+	$tablePrefix    = 'vtiger_';
+
+	$result = 0;
+	if(!empty($userid)){
+		$sql = "SELECT id FROM " . $tablePrefix . "lead_exclusives WHERE exclusive = 1 AND userid = " . $userid;
+		$adb = PearDatabase::getInstance();
+		$result = $adb->query($sql);
+		$result = $adb->num_rows($result);
+	}
+
+	return $result;
+	$log->debug('GetExclusiveCounts end.');
+
+}
 ?>
