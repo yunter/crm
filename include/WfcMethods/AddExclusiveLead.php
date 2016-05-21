@@ -11,6 +11,7 @@ require_once('include/logging.php');
 require_once('include/utils/utils.php');
 require_once('modules/Users/Users.php');
 
+define('MAX_COUNTS', 2);
 if(isset($_SESSION['authenticated_user_id'])) {
     $current_user = new Users();
     $result       = $current_user->retrieveCurrentUserInfoFromFile($_SESSION['authenticated_user_id'],"Users");
@@ -37,7 +38,7 @@ function AddExclusiveLead() {
     if(!empty($userid)) {
         $counts = GetExclusiveCounts($userid);
         $adb    = PearDatabase::getInstance();
-        if(($counts < 2)){
+        if(($counts <= MAX_COUNTS)){
             $sql  = 'INSERT INTO ' . $tablePrefix . 'lead_exclusives (';
             $sql .= 'userid, ';
             $sql .= 'leadid, ';
@@ -69,6 +70,5 @@ function AddExclusiveLead() {
 
     $log->debug('Update exclusive counts end. SQL:' . $sql);
     return  $result;
-
-
+    
 }

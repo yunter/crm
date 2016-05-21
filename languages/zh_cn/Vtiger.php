@@ -12,6 +12,7 @@
  * All Rights Reserved. 
  *************************************************************************************/
 $languageStrings = array(
+	'Vtiger' => 'CRM',
 	'--None--'=>'--无--',
 	'Account Name' => '公司名称',
 	'Accounts' => '客户',

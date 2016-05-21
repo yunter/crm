@@ -985,23 +985,7 @@ Vtiger_Base_Validator_Js("Vtiger_phone_Validator_Js",{
 	}
 })
 
-Vtiger_Base_Validator_Js("Vtiger_mobile_Validator_Js",{
-
-	/**
-	 *Function which invokes field validation
-	 *@param accepts field element as parameter
-	 * @return error if validation fails true on success
-	 */
-	invokeValidation: function(field, rules, i, options){
-		var mobileInstance = new Vtiger_mobile_Validator_Js();
-		mobileInstance.setElement(field);
-		var response = mobileInstance.validate();
-		if(response != true){
-			return mobileInstance.getError();
-		}
-	}
-
-},{
+Vtiger_Base_Validator_Js("Vtiger_mobile_Validator_Js",{},{
 
 	/**
 	 * Function to validate the mobile Numbers
@@ -1018,58 +1002,34 @@ Vtiger_Base_Validator_Js("Vtiger_mobile_Validator_Js",{
 			return false;
 		}
 		var thisInstance = this;
-		var data					= {};
-		data['record']				= thisInstance.getURLParam('record');
-		data['source_module'] 	= 'leadaddress';
-		data['field_name'] 		= 'mobile';
-		data['unique_keyword'] 	= fieldValue;
-		data['action'] 			= 'UniqueAjax';
-		thisInstance.ajaxCheck(data).then(
-			function(reponseData){
-				//
-			},
-			function (reponseData, error){
-				alert(reponseData['message']);
-				field.val("");
-				thisInstance.validate();
+		var dataStr = '';
+		dataStr += "record="+thisInstance.getURLParam('record');
+		dataStr += "&source_module="+'leadaddress';
+		dataStr += "&field_name="+'mobile';
+		dataStr += "&unique_keyword="+fieldValue;
+		dataStr += "&action="+'UniqueAjax';
+		var UniqueCheck = false;
+		var UniqueInfo  = "";
+		$.ajax({
+			type:"POST",
+			async: false,
+			data:dataStr,
+			dataType:"json",
+			success:function (msg) {
+				UniqueCheck = msg.result.success;
+				UniqueInfo  = msg.result.message;
 			}
-		);
+		});
+		if(!UniqueCheck){
+			this.setError(UniqueInfo);
+			return false;
+		}
 		return true;
-	},
-
-	ajaxCheck: function(data){
-		var aDeferred 	= jQuery.Deferred();
-		AppConnector.request(data).then(
-			function(reponseData){
-				if(reponseData['result']['success'] == false){
-					aDeferred.reject(reponseData['result']);
-				} else {
-					aDeferred.resolve(reponseData['result']);
-				}
-			}
-		);
-		return aDeferred.promise();
-	},
+	}
 
 })
 
-Vtiger_Base_Validator_Js("Vtiger_company_Validator_Js",{
-
-	/**
-	 *Function which invokes field validation
-	 *@param accepts field element as parameter
-	 * @return error if validation fails true on success
-	 */
-	invokeValidation: function(field, rules, i, options){
-		var companyInstance = new Vtiger_company_Validator_Js();
-		companyInstance.setElement(field);
-		var response = companyInstance.validate();
-		if(response != true){
-			return companyInstance.getError();
-		}
-	}
-
-},{
+Vtiger_Base_Validator_Js("Vtiger_company_Validator_Js",{},{
 
 	/**
 	 * Function to validate the company Name
@@ -1079,40 +1039,33 @@ Vtiger_Base_Validator_Js("Vtiger_company_Validator_Js",{
 	validate: function(){
 		var field = this.getElement();
 		var fieldValue = field.val();
-		var thisInstance = this;
-		var data					= {};
-		data['record']				= thisInstance.getURLParam('record');
-		data['source_module'] 	= 'leaddetails';
-		data['field_name'] 		= 'company';
-		data['unique_keyword'] 	= fieldValue;
-		data['action'] 			= 'UniqueAjax';
 		if(fieldValue != '') {
-			thisInstance.ajaxCheck(data).then(
-				function(reponseData){
-					//
-				},
-				function (reponseData, error){
-					alert(reponseData['message']);
-					field.val(app.vtranslate("JS_Duplicate") + ': '+ fieldValue);
-					thisInstance.validate();
+			var thisInstance = this;
+			var dataStr = '';
+			dataStr += "record="+thisInstance.getURLParam('record');
+			dataStr += "&source_module="+'leaddetails';
+			dataStr += "&field_name="+'company';
+			dataStr += "&unique_keyword="+fieldValue;
+			dataStr += "&action="+'UniqueAjax';
+			var UniqueCheck = false;
+			var UniqueInfo  = "";
+			$.ajax({
+				type:"POST",
+				async: false,
+				data:dataStr,
+				dataType:"json",
+				success:function (msg) {
+					UniqueCheck = msg.result.success;
+					UniqueInfo  = msg.result.message;
 				}
-			);
+			});
+			if(!UniqueCheck){
+				field.val(app.vtranslate("JS_Duplicate") + ': '+ fieldValue);
+				this.setError(UniqueInfo);
+				return false;
+			}
 
 			return true;
 		}
-	},
-
-	ajaxCheck: function(data){
-		var aDeferred 	= jQuery.Deferred();
-		AppConnector.request(data).then(
-			function(reponseData){
-				if(reponseData['result']['success'] == false){
-					aDeferred.reject(reponseData['result']);
-				} else {
-					aDeferred.resolve(reponseData['result']);
-				}
-			}
-		);
-		return aDeferred.promise();
-	},
+	}
 })
