@@ -10,6 +10,7 @@ require_once('config.php');
 require_once('include/logging.php');
 require_once('include/utils/utils.php');
 require_once('modules/Users/Users.php');
+define('MAX_TTME', 1); //day
 
 if(isset($_SESSION['authenticated_user_id'])) {
     $current_user = new Users();
@@ -43,6 +44,23 @@ function DelExclusiveLead() {
             $counts = GetExclusiveCounts($userid);
             $result = array('success' => true, 'message' => $counts );
             $log->debug('Update exclusive counts .' . json_encode($result));
+        }
+        $leadCfSQL    = "UPDATE vtiger_leadscf ";
+        $leadCfSQL   .= "LEFT JOIN " . $tablePrefix . "lead_exclusives ON vtiger_leadscf.leadid=" . $tablePrefix . "lead_exclusives.leadid ";
+        $leadCfSQL   .= "SET vtiger_leadscf.cf_833='未独占' ";
+        $leadCfSQL   .= "WHERE userid=" . $userid . " AND datediff(NOW(), " . $tablePrefix . "lead_exclusives.created) >=" . MAX_TTME;;
+        $resultLeadCf = $adb->query($leadCfSQL);
+        if($resultLeadCf){
+            $log->debug('Update vtiger_leadscf status success.' . $leadCfSQL );
+        } else {
+            $log->debug('Update vtiger_leadscf status failed.' . $leadCfSQL );
+        }
+        $delSQL       = "DELETE FROM " . $tablePrefix . "lead_exclusives WHERE userid=" . $userid . " AND datediff(NOW(), created) >=" . MAX_TTME;
+        $resultDelSQL = $adb->query($delSQL);
+        if($resultDelSQL){
+            $log->debug('DEL exclusive counts success.');
+        } else {
+            $log->debug('DEL exclusive failed.' );
         }
     }
 

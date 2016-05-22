@@ -1069,3 +1069,50 @@ Vtiger_Base_Validator_Js("Vtiger_company_Validator_Js",{},{
 		}
 	}
 })
+
+Vtiger_Base_Validator_Js("Vtiger_cf_833_Validator_Js",{},{
+
+	/**
+	 * Function to validate the company Name
+	 * @return true if validation is successfull
+	 * @return false if validation error occurs
+	 */
+	validate: function(){
+		var field = this.getElement();
+		var fieldValue = field.val();
+		if(fieldValue != '') {
+			var thisInstance = this;
+			var dataStr = '';
+			dataStr += "&unique_keyword="+fieldValue;
+			dataStr += "&action="+'DealExclusiveAjax';
+			var CountsCheck = true;
+			var CountsInfo  = "";
+			$.ajax({
+				type:"POST",
+				async: false,
+				data:dataStr,
+				dataType:"json",
+				success:function (msg) {
+					if(msg.result.success){
+						if(msg.result.message > 30) {
+							CountsCheck = false;
+							CountsInfo  = '您已独占：' + msg.result.message + '条资源。';
+						} else{
+							CountsInfo  = '您还可独占：' + (30 - msg.result.message) + '条资源。';
+						}
+					}
+					
+				}
+			});
+			if(!CountsCheck){
+				field.val('未独占');
+				this.setError(CountsInfo);
+				return false;
+			} else {
+				Vtiger_Helper_Js.showPnotify(CountsInfo);
+			}
+
+			return true;
+		}
+	}
+})

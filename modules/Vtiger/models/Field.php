@@ -896,8 +896,11 @@ class Vtiger_Field_Model extends Vtiger_Field {
 				array_push($validator, $funcName);
 				break;
 			case 'mobile' :
-				$funcName = array('name'=>'mobile',
-					'params'=>array('assigned_user_id'));
+				$funcName = array('name'=>'mobile');
+				array_push($validator, $funcName);
+				break;
+			case 'cf_833' :
+				$funcName = array('name'=>'cf_833');
 				array_push($validator, $funcName);
 				break;
 			case 'company' :
