@@ -86,10 +86,14 @@
 			</td>
         </tr>
         {/if}
+		{assign var=title value=$USER_MODEL->get('first_name')}
+		{if empty($title)}
+			{assign var=title value=$USER_MODEL->get('last_name')}
+		{/if}
 		{foreach item=LISTVIEW_ENTRY from=$LISTVIEW_ENTRIES name=listview}
 		<tr class="listViewEntries" data-id='{$LISTVIEW_ENTRY->getId()}' data-recordUrl='{$LISTVIEW_ENTRY->getDetailViewUrl()}' id="{$MODULE}_listView_row_{$smarty.foreach.listview.index+1}">
             <td  width="5%" class="{$WIDTHTYPE}">
-				<input type="checkbox" value="{$LISTVIEW_ENTRY->getId()}" {if $LISTVIEW_ENTRY->get('cf_833') eq '已独占' } disabled aria-disabled="true" {/if} class="listViewEntriesCheckBox"/>
+				<input type="checkbox" value="{$LISTVIEW_ENTRY->getId()}" {if $LISTVIEW_ENTRY->get('cf_833') eq '已独占'  and (trim($title) neq trim($LISTVIEW_ENTRY->get('assigned_user_id')))  } disabled aria-disabled="true" {/if} class="listViewEntriesCheckBox"/>
 			</td>
 			{foreach item=LISTVIEW_HEADER from=$LISTVIEW_HEADERS}
 			{assign var=LISTVIEW_HEADERNAME value=$LISTVIEW_HEADER->get('name')}
@@ -103,7 +107,12 @@
 					{else}
 						{$LISTVIEW_ENTRY->get('currencySymbol')}{$LISTVIEW_ENTRY->get($LISTVIEW_HEADERNAME)}
 					{/if}
-				{elseif ($LISTVIEW_HEADER->get('uitype') eq '11') && ($CURRENT_USER_MODEL->get('id') != $LISTVIEW_ENTRY->get('assigned_user_id')) && ($LISTVIEW_ENTRY->get('cf_833') eq '已独占')}独占保护
+				{elseif ($LISTVIEW_HEADER->get('uitype') eq '11')}
+					{if (trim($title) neq trim($LISTVIEW_ENTRY->get('assigned_user_id'))) and ($LISTVIEW_ENTRY->get('cf_833') eq '已独占')}
+						独占保护
+					{else}
+						{$LISTVIEW_ENTRY->get($LISTVIEW_HEADERNAME)}
+					{/if}
 				{else}
                     {if $LISTVIEW_HEADER->getFieldDataType() eq 'double'}
                         {decimalFormat($LISTVIEW_ENTRY->get($LISTVIEW_HEADERNAME))}
@@ -114,6 +123,7 @@
 				{if $LISTVIEW_HEADER@last}
 				</td><td nowrap class="{$WIDTHTYPE}">
 				<div class="actions pull-right">
+					{if $LISTVIEW_ENTRY->get('cf_833') neq '已独占' and (trim($title) neq trim($LISTVIEW_ENTRY->get('assigned_user_id'))) }
 					<span class="actionImages">
 						<a href="{$LISTVIEW_ENTRY->getFullDetailViewUrl()}"><i title="{vtranslate('LBL_SHOW_COMPLETE_DETAILS', $MODULE)}" class="icon-th-list alignMiddle"></i></a>&nbsp;
 						{if $IS_MODULE_EDITABLE}
@@ -123,6 +133,7 @@
 							<a class="deleteRecordButton"><i title="{vtranslate('LBL_DELETE', $MODULE)}" class="icon-trash alignMiddle"></i></a>
 						{/if}
 					</span>
+					{/if}
 				</div>
 				{/if}
 			</td>

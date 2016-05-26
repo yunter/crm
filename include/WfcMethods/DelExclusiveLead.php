@@ -36,15 +36,7 @@ function DelExclusiveLead() {
     $leadid 	= trim($_REQUEST['record']) ? : '';
     $result     = array('success' => false, 'message' => '');
     if(!empty($userid)) {
-
-        $sql = "DELETE FROM " . $tablePrefix . "lead_exclusives WHERE userid=" . $userid . " AND leadid=" . $leadid;
         $adb    = PearDatabase::getInstance();
-        $result = $adb->query($sql);
-        if($result){
-            $counts = GetExclusiveCounts($userid);
-            $result = array('success' => true, 'message' => $counts );
-            $log->debug('Update exclusive counts .' . json_encode($result));
-        }
         $leadCfSQL    = "UPDATE vtiger_leadscf ";
         $leadCfSQL   .= "LEFT JOIN " . $tablePrefix . "lead_exclusives ON vtiger_leadscf.leadid=" . $tablePrefix . "lead_exclusives.leadid ";
         $leadCfSQL   .= "SET vtiger_leadscf.cf_833='未独占' ";
@@ -54,6 +46,13 @@ function DelExclusiveLead() {
             $log->debug('Update vtiger_leadscf status success.' . $leadCfSQL );
         } else {
             $log->debug('Update vtiger_leadscf status failed.' . $leadCfSQL );
+        }
+        $sql = "DELETE FROM " . $tablePrefix . "lead_exclusives WHERE userid=" . $userid . " AND leadid=" . $leadid;
+        $result = $adb->query($sql);
+        if($result){
+            $counts = GetExclusiveCounts($userid);
+            $result = array('success' => true, 'message' => $counts );
+            $log->debug('Update exclusive counts .' . json_encode($result));
         }
         $delSQL       = "DELETE FROM " . $tablePrefix . "lead_exclusives WHERE userid=" . $userid . " AND datediff(NOW(), created) >=" . MAX_TTME;
         $resultDelSQL = $adb->query($delSQL);

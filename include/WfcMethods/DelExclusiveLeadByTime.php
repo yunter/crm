@@ -20,13 +20,13 @@ function DelExclusiveLeadByTime() {
     $adb    = PearDatabase::getInstance();
     $leadExclusivesTable = $tablePrefix . 'lead_exclusives';
     $leadCfSQL  = "UPDATE vtiger_leadscf SET vtiger_leadscf.cf_833='未独占' ";
-    $leadCfSQL .= "LEFT JOIN $leadExclusivesTable ON vtiger_leadscf.leadid=$leadExclusivesTable.leadid ";
+    $leadCfSQL .= "LEFT JOIN $leadExclusivesTable ON $leadExclusivesTable.leadid = vtiger_leadscf.leadid ";
     $leadCfSQL .= "SET vtiger_leadscf.cf_833='未独占' ";
     $leadCfSQL .= "WHERE datediff(NOW(), $leadExclusivesTable.created) >=" . MAX_TTME;;
     $resultLeadCf = $adb->query($leadCfSQL);
     if($resultLeadCf){
         $result = array('success' => true, 'message' => $leadCfSQL );
-        $log->debug('Update vtiger_leadscf status success.' );
+        $log->debug('Update vtiger_leadscf status success. SQL:' . $leadCfSQL );
     } else {
         $log->debug('Update vtiger_leadscf status failed.' );
     }
@@ -34,7 +34,7 @@ function DelExclusiveLeadByTime() {
     $resultDelSQL = $adb->query($delSQL);
     if($resultDelSQL){
         $result = array('success' => true, 'tip' => $delSQL );
-        $log->debug('DEL exclusive counts success.');
+        $log->debug('DEL exclusive counts success.SQL:' . $delSQL);
     } else {
         $log->debug('DEL exclusive failed.' );
     }
