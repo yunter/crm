@@ -13,7 +13,7 @@ define('MAX_TTME', 1); //day
 
 function DelExclusiveLeadByTime() {
     $log =& LoggerManager::getLogger('ClickATell');
-    $log->debug('Update exclusive counts start.');
+    $log->debug('update exclusive status start.');
     $tablePrefix	= 'vtiger_';
 
     $result     = array('success' => false, 'message' => '', 'tip'=>'');
@@ -39,6 +39,6 @@ function DelExclusiveLeadByTime() {
         $log->debug('DEL exclusive failed.' );
     }
 
-    $log->debug('Update exclusive counts end.');
+    $log->debug('update exclusive status end.');
     return  $result;
 }
