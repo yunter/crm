@@ -38,7 +38,7 @@
                     </div>
                 </div>
                 <div class='span5 textAlignCenter'>
-                    <h3>{$REPORT_MODEL->getName()}</h3>
+                    <h3>{vtranslate($REPORT_MODEL->getName(), $MODULE)}</h3>
                     <div id="noOfRecords">{vtranslate('LBL_NO_OF_RECORDS',$MODULE)} <span id="countValue">{$COUNT}</span>
 						{if $COUNT > 1000}
 							<span class="redColor" id="moreRecordsText"> ({vtranslate('LBL_MORE_RECORDS_TXT',$MODULE)})</span>

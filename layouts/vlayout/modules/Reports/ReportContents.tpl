@@ -76,10 +76,10 @@
                     
                     {if $GROUPBYFIELDSCOUNT eq 1}
                         {assign var=FIRST_FIELD value=vtranslate(trim($FIELDNAMES[0]), $MODULE)}
-                    {else if $GROUPBYFIELDSCOUNT eq 2}    
+                    {elseif $GROUPBYFIELDSCOUNT eq 2}
                         {assign var=FIRST_FIELD value=vtranslate(trim($FIELDNAMES[0]),$MODULE)}
                         {assign var=SECOND_FIELD value=vtranslate(trim($FIELDNAMES[1]),$MODULE)}
-                    {else if $GROUPBYFIELDSCOUNT eq 3}    
+                    {elseif $GROUPBYFIELDSCOUNT eq 3}
                         {assign var=FIRST_FIELD value=vtranslate(trim($FIELDNAMES[0]),$MODULE)}
                         {assign var=SECOND_FIELD value=vtranslate(trim($FIELDNAMES[1]),$MODULE)}
                         {assign var=THIRD_FIELD value=vtranslate(trim($FIELDNAMES[2]),$MODULE)}
@@ -100,7 +100,7 @@
                                     {if $VALUE neq " " }
                                         {$FIRST_VALUE = $VALUE}
                                     {/if}   
-                                {else if ( $NAME eq $SECOND_FIELD || $NAME|strstr:$SECOND_FIELD) && ($SECOND_VALUE eq $VALUE || $SECOND_VALUE eq " ")}
+                                {elseif ( $NAME eq $SECOND_FIELD || $NAME|strstr:$SECOND_FIELD) && ($SECOND_VALUE eq $VALUE || $SECOND_VALUE eq " ")}
                                      {if $SECOND_VALUE eq " " || $VALUE eq "-"}
                                         <td>{$VALUE}</td>
                                     {else}    
@@ -109,7 +109,7 @@
                                     {if $VALUE neq " " }
                                         {$SECOND_VALUE = $VALUE}
                                     {/if}   
-                                {else if ($NAME eq $THIRD_FIELD || $NAME|strstr:$THIRD_FIELD) && ($THIRD_VALUE eq $VALUE || $THIRD_VALUE eq " ")}
+                                {elseif ($NAME eq $THIRD_FIELD || $NAME|strstr:$THIRD_FIELD) && ($THIRD_VALUE eq $VALUE || $THIRD_VALUE eq " ")}
                                     {if $THIRD_VALUE eq " " || $VALUE eq "-"}
                                         <td>{$VALUE}</td>
                                     {else}    
@@ -122,9 +122,9 @@
                                     <td>{$VALUE}</td>
                                     {if $NAME eq $FIRST_FIELD || $NAME|strstr:$FIRST_FIELD}
                                         {$FIRST_VALUE = $VALUE}
-                                    {else if $NAME eq $SECOND_FIELD || $NAME|strstr:$SECOND_FIELD}
+                                    {elseif $NAME eq $SECOND_FIELD || $NAME|strstr:$SECOND_FIELD}
                                         {$SECOND_VALUE = $VALUE}
-                                    {else if $NAME eq $THIRD_FIELD || $NAME|strstr:$THIRD_FIELD}
+                                    {elseif $NAME eq $THIRD_FIELD || $NAME|strstr:$THIRD_FIELD}
                                         {$THIRD_VALUE = $VALUE}
                                     {/if}    
                                 {/if}   
