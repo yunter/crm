@@ -44,22 +44,17 @@ function DelExclusiveLead() {
         $resultLeadCf = $adb->query($leadCfSQL);
         if($resultLeadCf){
             $log->debug('Update vtiger_leadscf status success.' . $leadCfSQL );
-        } else {
-            $log->debug('Update vtiger_leadscf status failed.' . $leadCfSQL );
-        }
-        $sql = "DELETE FROM " . $tablePrefix . "lead_exclusives WHERE userid=" . $userid . " AND leadid=" . $leadid;
-        $result = $adb->query($sql);
-        if($result){
+            $sql = "DELETE FROM " . $tablePrefix . "lead_exclusives WHERE userid=" . $userid . " AND leadid=" . $leadid;
+            $result = $adb->query($sql);
+            if($result){
+                $log->debug('Update exclusive counts success .' . json_encode($result));
+            }
             $counts = GetExclusiveCounts($userid);
             $result = array('success' => true, 'message' => $counts );
-            $log->debug('Update exclusive counts .' . json_encode($result));
-        }
-        $delSQL       = "DELETE FROM " . $tablePrefix . "lead_exclusives WHERE userid=" . $userid . " AND datediff(NOW(), created) >=" . MAX_TTME;
-        $resultDelSQL = $adb->query($delSQL);
-        if($resultDelSQL){
-            $log->debug('DEL exclusive counts success.');
         } else {
-            $log->debug('DEL exclusive failed.' );
+            $log->debug('Update vtiger_leadscf status failed.' . $leadCfSQL );
+            $counts = GetExclusiveCounts($userid);
+            $result     = array('success' => false, 'message' => $counts);
         }
     }
 
