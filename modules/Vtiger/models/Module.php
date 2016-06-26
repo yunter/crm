@@ -539,7 +539,7 @@ class Vtiger_Module_Model extends Vtiger_Module {
 	 */
 	public function getRecentRecords($limit=10) {
 		$db = PearDatabase::getInstance();
-
+		$nonAdminQuery = '';
 		$currentUserModel = Users_Record_Model::getCurrentUserModel();
         $deletedCondition = $this->getDeletedRecordCondition();
 		$nonAdminQuery .= Users_Privileges_Model::getNonAdminAccessControlQuery($this->getName());

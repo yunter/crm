@@ -14,8 +14,6 @@
 {assign var=MODULE value='PBXManager'}
 {assign var=MODULEMODEL value=Vtiger_Module_Model::getInstance($MODULE)}
 {assign var=FIELD_VALUE value=$FIELD_MODEL->get('fieldvalue')}
-{if ($CURRENT_USER_MODEL->get('id') neq $RECORD->get('assigned_user_id')) and ($RECORD->get('cf_833') eq '已独占')}仅独占人可查看
-{else}
 {if $MODULEMODEL and $MODULEMODEL->isActive() and $FIELD_VALUE}
     {assign var=PERMISSION value=PBXManager_Server_Model::checkPermissionForOutgoingCall()}
     {if $PERMISSION}
@@ -27,5 +25,4 @@
     {/if}
 {else}
     {$FIELD_MODEL->getDisplayValue($FIELD_MODEL->get('fieldvalue'), $RECORD->getId(), $RECORD)}
-{/if}
 {/if}

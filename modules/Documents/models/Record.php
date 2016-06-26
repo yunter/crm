@@ -74,7 +74,8 @@ class Documents_Record_Model extends Vtiger_Record_Model {
 			$fileName = $fileDetails['name'];
 
 			if ($this->get('filelocationtype') == 'I') {
-				$fileName = html_entity_decode($fileName, ENT_QUOTES, vglobal('default_charset'));
+				//$fileName = html_entity_decode($fileName, ENT_QUOTES, vglobal('default_charset'));
+				$fileName = urlencode($fileName);
 				$savedFile = $fileDetails['attachmentsid']."_".$fileName;
 
 				$fileSize = filesize($filePath.$savedFile);

@@ -629,7 +629,6 @@ class Vtiger_Util_Helper {
     * else returns empty string
     */
    function getDefaultMandatoryValue($dataType) {
-       $value;
        switch ($dataType) {
            case 'date':
                    $dateObject = new DateTime();

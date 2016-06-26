@@ -162,7 +162,7 @@ class CRMEntity {
 		$upload_file_path = decideFilePath();
 
 		//upload the file in server
-		$upload_status = move_uploaded_file($filetmp_name, $upload_file_path . $current_id . "_" . $binFile);
+		$upload_status = move_uploaded_file($filetmp_name, $upload_file_path . $current_id . "_" . urlencode($binFile));
 
 		$save_file = 'true';
 		//only images are allowed for these modules

@@ -191,6 +191,11 @@ class Vtiger_ListView_Model extends Vtiger_Base_Model {
 			$sortOrder = 'DESC';
 		}
 
+		if($moduleName == "ServiceContracts"){
+			$orderBy = 'vtiger_crmentity.createdtime';
+			$sortOrder = 'DESC';
+		}
+
         if(!empty($orderBy)){
             $columnFieldMapping = $moduleModel->getColumnFieldMapping();
             $orderByFieldName = $columnFieldMapping[$orderBy];

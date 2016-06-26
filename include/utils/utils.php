@@ -1850,16 +1850,16 @@ function sanitizeUploadFileName($fileName, $badFileExtensions) {
 		if(in_array(strtolower($partOfFileName), $badFileExtensions)) {
 			$badExtensionFound = true;
 			$fileNameParts[$i] = $partOfFileName . 'file';
-	}
+		}
 	}
 
 	$newFileName = implode(".", $fileNameParts);
 
 	if ($badExtensionFound) {
 		$newFileName .= ".txt";
-		}
+	}
 	return $newFileName;
-		}
+}
 
 /** Function to get the tab meta information for a given id
   * @param $tabId -- tab id :: Type integer
