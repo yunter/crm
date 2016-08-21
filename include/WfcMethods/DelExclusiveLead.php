@@ -10,7 +10,7 @@ require_once('config.php');
 require_once('include/logging.php');
 require_once('include/utils/utils.php');
 require_once('modules/Users/Users.php');
-define('MAX_TTME', 1); //day
+define('MAX_TTME', 90); //day
 
 if(isset($_SESSION['authenticated_user_id'])) {
     $current_user = new Users();
@@ -31,9 +31,12 @@ function DelExclusiveLead() {
     $log =& LoggerManager::getLogger('ClickATell');
     $log->debug('Update exclusive counts start.');
     $tablePrefix	= 'vtiger_';
-
-    $userid     = trim($_REQUEST['assigned_user_id']) ? : $_SESSION['authenticated_user_id'];
-    $leadid 	= trim($_REQUEST['record']) ? : '';
+    
+    $assigned_user_id = trim($_REQUEST['assigned_user_id']);
+    $record     = trim($_REQUEST['record']);
+    $userid     = $assigned_user_id ? $assigned_user_id : $_SESSION['authenticated_user_id'];
+    $leadid 	= $record ? $record : '';
+    
     $result     = array('success' => false, 'message' => '');
     if(!empty($userid)) {
         $adb    = PearDatabase::getInstance();

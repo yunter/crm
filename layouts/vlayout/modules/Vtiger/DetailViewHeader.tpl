@@ -84,6 +84,7 @@
 				<form id="detailView" data-name-fields='{ZEND_JSON::encode($MODULE_MODEL->getNameFields())}' method="POST">
                                     {if !empty($PICKLIST_DEPENDENCY_DATASOURCE)} 
                                         <input type="hidden" name="picklistDependency" value="{Vtiger_Util_Helper::toSafeHTML($PICKLIST_DEPENDENCY_DATASOURCE)}"> 
-                                    {/if} 
+                                    {/if}
+					{if $MODULE_NAME eq 'Leads' and $RECORD->getId() neq ''}<div style="text-align:center;padding-left:20px;margin-bottom: -20px;font-weight: bolder;" id="cf_833_box"></div> {/if}
 					<div class="contents">
 {/strip}

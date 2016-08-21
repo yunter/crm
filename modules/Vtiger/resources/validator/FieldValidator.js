@@ -1084,30 +1084,17 @@ Vtiger_Base_Validator_Js("Vtiger_company_Validator_Js",{
 					UniqueInfo  = msg.result.message;
 				}
 			});
-			if(!UniqueCheck){
-				/**field.val(app.vtranslate("JS_Duplicate") + ': '+ fieldValue);*/
-				this.setError(UniqueInfo);
-				var objA = jQuery(".contents");
-				var objB = jQuery(".contentHeader row-fluid");
-				var objC = '';
-				if(objA != ''){
-					objC = objA;
-				} else if(objB != '') {
-					objC = objB;
-				}
-				if( objC != "") {
-					objC.validationEngine('attach',{
-						showArrow:true,
-						promptPosition:"topLeft",
-						autoHidePrompt: true,
-						autoPositionUpdate: true,
-						autoHideDelay:3000,
-						scroll: false})
-						.validationEngine('showPrompt', UniqueInfo ,'error');
-				}
-				//return false;
+			if(!UniqueCheck) {
+
+				var  tipStr = '';
+				     tipStr += '<div class="Leads_editView_fieldName_companyformError formError" style="opacity: 0.87; position: absolute; top: 139.2px; left: 731.5px; margin-top: -38px;"><div class="formErrorContent">';
+				     tipStr += UniqueInfo;
+				     tipStr += '<br></div><div class="formErrorArrow"><div class="line10"></div><div class="line9"></div><div class="line8"></div><div class="line7"></div><div class="line6"></div><div class="line5"></div><div class="line4"></div><div class="line3"></div><div class="line2"></div><div class="line1"></div></div></div>';
+				var obj = $('[name="company"]');
+				obj.before(tipStr);
 			}
-			return UniqueCheck;
+
+			return true;
 		}
 		return false;
 	}
@@ -1135,13 +1122,24 @@ Vtiger_Base_Validator_Js("Vtiger_cf_833_Validator_Js",{
 		var field       = this.getElement();
 		var fieldValue  = field.val();
 		var companyName = $("#Leads_editView_fieldName_company").val();
-		if(fieldValue != '') {
+
+		var num = parseInt($("#cf_833_tip").html());
+		var originalValue = $("#cf_833_tip").attr('data-original-value');
+
+		var CountsInfo  = "统计独占失败";
+
+		if(('未独占' == originalValue || '' == originalValue ) && num >= 30 && ('已独占' == fieldValue)) {
+			CountsInfo  = "已达到独占上限，请先释放其它独占资源";
+			this.setError(CountsInfo);
+			return false;
+		}
+
+		var CountsCheck = true;
+		if((fieldValue != '') && (originalValue != fieldValue)) {
 			var dataStr = '';
 			dataStr += "&fieldValue="+fieldValue;
 			dataStr += "&companyName="+ companyName;
 			dataStr += "&action="+'DealExclusiveAjax';
-			var CountsCheck = true;
-			var CountsInfo  = "统计独占失败";
 			$.ajax({
 				type:"POST",
 				async: false,
@@ -1149,35 +1147,26 @@ Vtiger_Base_Validator_Js("Vtiger_cf_833_Validator_Js",{
 				dataType:"json",
 				success:function (msg) {
 					if(msg.result.success){
-						if(msg.result.message >=30) {
-							CountsCheck = false;
-							CountsInfo  = '您已独占：' + msg.result.message + '条资源。';
-						} else{
-							if(msg.result.message == 0 && '未独占' == fieldValue) {
-								CountsInfo  = '您还可独占：30 条资源。';
-							} else if(msg.result.message == 0 && '未独占' != fieldValue) {
-								CountsInfo  = '您还可独占：' + (30 - msg.result.message - 1) + '条资源。';
-							} else if(msg.result.message > 0 && '未独占' == fieldValue) {
-								CountsInfo  = '您还可独占：' + (30 - msg.result.message + 1) + '条资源。';
-							} else {
-								CountsInfo  = '您还可独占：' + (30 - msg.result.message) + '条资源。';
-							}
+						$("#cf_833_tip").attr('data-original-value', fieldValue);
+						if('未独占' == fieldValue) {
+							CountsInfo  = num - 1;
+						} else {
+							CountsInfo  = num + 1;
 						}
+						$("#cf_833_tip").html(CountsInfo);
+						CountsCheck == true;
 					} else {
 						if('repeat' == msg.result.message){
 							CountsInfo  = "资源已被独占，请核实后再录入。";
+						} else {
+							CountsInfo  = "请求异常，请稍候再试。";
 						}
+						this.setError(CountsInfo);
+						CountsCheck == false;
 					}
 
 				}
 			});
-			if(!CountsCheck){
-				field.val('未独占');
-				Vtiger_Helper_Js.showPnotify(CountsInfo);
-				return false;
-			}
-
-			Vtiger_Helper_Js.showPnotify(CountsInfo);
 			return CountsCheck;
 		}
 		return true;

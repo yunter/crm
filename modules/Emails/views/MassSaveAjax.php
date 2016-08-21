@@ -182,7 +182,7 @@ class Emails_MassSaveAjax_View extends Vtiger_Footer_View {
 
 					//get the file path inwhich folder we want to upload the file
 					$upload_file_path = decideFilePath();
-					$newFilePath = $upload_file_path . $current_id . "_" . urlencode($binFile);
+					$newFilePath = $upload_file_path . $current_id . "_" . $binFile;
 
 					copy($oldFilePath, $newFilePath);
 

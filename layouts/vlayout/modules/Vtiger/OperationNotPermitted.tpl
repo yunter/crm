@@ -9,6 +9,9 @@
   *
  ********************************************************************************/
 -->*}
+<!DOCTYPE HTML>
+<html>
+<body>
 <div style="margin:0 auto;width: 50em;">
 	<table border='0' cellpadding='5' cellspacing='0' height='600px' width="700px">
 	<tr><td align='center'>
@@ -18,11 +21,11 @@
 		<tr>
 			<td rowspan='2' width='11%'><img src="{vimage_path('denied.gif')}" ></td>
 			<td style='border-bottom: 1px solid rgb(204, 204, 204);' nowrap='nowrap' width='70%'>
-				<span class='genHeaderSmall'>{vtranslate($MESSAGE)}</span></td>
+				<span class='genHeaderSmall'>Operation Not Permitted</span></td>
 		</tr>
 		<tr>
 			<td class='small' align='right' nowrap='nowrap'>
-				<a href='javascript:window.history.back();'>{vtranslate('LBL_GO_BACK')}</a><br>
+				<a href='javascript:window.history.back();'>Back</a><br>
 			</td>
 		</tr>
 		</table>
@@ -30,3 +33,5 @@
 	</td></tr>
 	</table>
 </div>
+</body>
+</html>

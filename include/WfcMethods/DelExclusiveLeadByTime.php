@@ -9,7 +9,7 @@ require_once('config.php');
 require_once('include/logging.php');
 require_once('include/utils/utils.php');
 require_once('modules/Users/Users.php');
-define('MAX_TTME', 1); //day
+define('MAX_TTME', 90); //day
 
 function DelExclusiveLeadByTime() {
     $log =& LoggerManager::getLogger('ClickATell');

@@ -14,7 +14,7 @@ class Vtiger_DealExclusiveAjax_Action extends Vtiger_IndexAjax_View {
             $user_id = $_SESSION['authenticated_user_id'];
         }
         
-        $fieldValue = $request->get('fieldValue');
+        $fieldValue  = $request->get('fieldValue');
         $companyName = $request->get('companyName');
         $response 	 = new Vtiger_Response();
         $response->setEmitType(Vtiger_Response::$EMIT_JSON);

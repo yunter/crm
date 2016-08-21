@@ -437,3 +437,44 @@ jQuery(document).ready(function() {
 		Vtiger_Index_Js.registerPostAjaxEvents();
 	});
 });
+
+jQuery(document).ready(function() {
+	/**
+	var obj = $('#Leads_detailView_fieldLabel_cf_833').children();
+	if(obj.attr('class') == undefined) {
+		obj = $('[name="cf_833"]').parent().parent().parent().prev().children();
+	}**/
+	var obj = $('#cf_833_box');
+	var current_user_id  = $("#current_user_id").val();
+	var assigned_user_id =  $('[name="assigned_user_id"]').val();
+	if(obj != undefined && obj != '') {
+		var fieldValue  = $('[name="cf_833"]').val();
+		var companyName = $("#Leads_editView_fieldName_company").val();
+
+		if((assigned_user_id != undefined) && (current_user_id != assigned_user_id)){
+			$('[name="cf_833"]').parent().parent().parent().html(fieldValue);
+		}
+		var dataStr = '';
+			dataStr += "&fieldValue="+fieldValue;
+			dataStr += "&companyName="+ companyName;
+			dataStr += "&action="+'DealExclusiveAjax';
+		$.ajax({
+			type:"POST",
+			async: false,
+			data:dataStr,
+			dataType:"json",
+			success:function (msg) {
+				if(msg.result.success) {
+					var msgStr = '已独占';
+					 msgStr += '<span style="color:#e60000" id="cf_833_tip" data-original-value="' + fieldValue + '">' + msg.result.message + '</span> 条资源';
+					 //msgStr += obj.html();
+					 obj.html(msgStr);
+				} else {
+					if('repeat' == msg.result.message){
+						alert("资源已被独占，请核实再操作。");
+					}
+				}
+			}
+		});
+	}
+});

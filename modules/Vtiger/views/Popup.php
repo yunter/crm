@@ -96,7 +96,9 @@ class Vtiger_Popup_View extends Vtiger_Footer_View {
 
 		//To handle special operation when selecting record from Popup
 		$getUrl = $request->get('get_url');
-
+		if(($sourceModule == 'Accounts')  && 'Products'== $moduleName){
+			$sourceModule = 'ServiceContracts';
+		}
 		//Check whether the request is in multi select mode
 		$multiSelectMode = $request->get('multi_select');
 		if(empty($multiSelectMode)) {

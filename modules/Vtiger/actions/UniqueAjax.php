@@ -15,11 +15,11 @@ class Vtiger_UniqueAjax_Action extends Vtiger_IndexAjax_View {
 		
 		$db 			= PearDatabase::getInstance();
 		$ExcludeSql		= (empty($record) || ($record == 'null'))? '' : " AND " . $this->getKeyField($sourceModule) . " != " . $record;
-		$sql 			= "SELECT $feildName FROM $moduleName WHERE $feildName LIKE " . '"%'. $unique_keyword . '%"' . $ExcludeSql;
+		$sql 			= "SELECT $feildName FROM $moduleName WHERE $feildName = '". $unique_keyword . "'" . $ExcludeSql;
 		$result			= $db->query($sql);
 		$result			= $db->num_rows($result);
 		$response 		= new Vtiger_Response();
-		//$response->setEmitType(Vtiger_Response::$EMIT_JSON);
+		$response->setEmitType(Vtiger_Response::$EMIT_JSON);
 		if(!$result){
 			$response->setResult(array('success'=>true, 'message'=>vtranslate('LBL_RECORD_NONE') ));
 		} else {

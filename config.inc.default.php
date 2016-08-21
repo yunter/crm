@@ -46,7 +46,7 @@ $HELPDESK_SUPPORT_EMAIL_REPLY_ID = $HELPDESK_SUPPORT_EMAIL_ID;
       db_name
 */
 
-$dbconfig['db_server'] = '127.0.0.1';
+$dbconfig['db_server'] = 'localhost';
 $dbconfig['db_port'] = ':3306';
 $dbconfig['db_username'] = 'root';
 $dbconfig['db_password'] = '123456';

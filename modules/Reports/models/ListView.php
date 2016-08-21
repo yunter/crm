@@ -134,6 +134,47 @@ class Reports_ListView_Model extends Vtiger_ListView_Model {
 		return $reportRecordModels;
 	}
 
+	public function getAchs($startDate = '', $endDate = ''){
+		$db = PearDatabase::getInstance();
+		$startDate = !empty($startDate) ? $startDate : date('Y-m-d H:i:s',strtotime('-30 days'));
+		$endDate   = !empty($endDate) ? $endDate : date('Y-m-d H:i:s');
+		$sql="SELECT DISTINCT CASE WHEN ( vtiger_usersServiceContracts.last_name NOT LIKE ''
+				AND vtiger_crmentity.crmid != '') THEN CONCAT(vtiger_usersServiceContracts.first_name, ' ', 
+				vtiger_usersServiceContracts.last_name)
+				ELSE vtiger_groupsServiceContracts.groupname 
+				END AS '员工姓名',
+				SUM(vtiger_servicecontractscf.cf_763) AS '参展人数',
+				SUM(vtiger_servicecontractscf.cf_761) AS '展位数', 
+				SUM(vtiger_servicecontractscf.cf_921) AS '合同金额'
+				FROM vtiger_servicecontracts
+				INNER JOIN vtiger_crmentity ON vtiger_crmentity.crmid = vtiger_servicecontracts.servicecontractsid
+				INNER JOIN vtiger_servicecontractscf AS vtiger_servicecontractscf ON vtiger_servicecontractscf.servicecontractsid = vtiger_servicecontracts.servicecontractsid
+				LEFT JOIN vtiger_groups AS vtiger_groupsServiceContracts ON vtiger_groupsServiceContracts.groupid = vtiger_crmentity.smownerid
+				LEFT JOIN vtiger_users AS vtiger_usersServiceContracts ON vtiger_usersServiceContracts.id = vtiger_crmentity.smownerid
+				LEFT JOIN vtiger_groups ON vtiger_groups.groupid = vtiger_crmentity.smownerid
+				LEFT JOIN vtiger_users ON vtiger_users.id = vtiger_crmentity.smownerid
+				WHERE
+					vtiger_servicecontracts.servicecontractsid > 0
+				AND vtiger_crmentity.deleted = 0
+				AND vtiger_servicecontractscf.cf_773 BETWEEN '{$startDate}' AND '{$endDate}' 
+				GROUP BY
+					`员工姓名`
+				ORDER BY
+					`参展人数` DESC,
+					`展位数` DESC,
+					`合同金额` DESC ";
+		$result = $db->pquery($sql);
+		$nums   = $db->num_rows($result);
+		for($i=0; $i<$nums; $i++) {
+			$data[] = $db->query_result($result, $i, '员工姓名');
+			$data[] = $db->query_result($result, $i, '参展人数');
+			$data[] = $db->query_result($result, $i, '展位数');
+			$data[] = $db->query_result($result, $i, '合同金额');
+		}
+		$data = array_chunk($data, 4);
+		return $data;
+	}
+
 	/**
 	 * Function to get the list view entries count
 	 * @return <Integer>

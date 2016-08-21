@@ -92,18 +92,33 @@
 					 </label>
 				 </td>
 				 <td class="fieldValue {$WIDTHTYPE}" id="{$MODULE_NAME}_detailView_fieldValue_{$FIELD_MODEL->getName()}" {if $FIELD_MODEL->get('uitype') eq '19' or $FIELD_MODEL->get('uitype') eq '20'} colspan="3" {assign var=COUNTER value=$COUNTER+1} {/if}>
-					 <span class="value" data-field-type="{$FIELD_MODEL->getFieldDataType()}" {if $FIELD_MODEL->get('uitype') eq '19' or $FIELD_MODEL->get('uitype') eq '20' or $FIELD_MODEL->get('uitype') eq '21'} style="white-space:normal;" {/if}>
+					 {if $FIELD_MODEL->getName() eq 'assigned_user_id'}
+						 {assign var=ASSIGNED_USER_ID value=$FIELD_MODEL->get('fieldvalue')}
+						 {assign var=CURRENT_USER_ID value=$USER_MODEL->get('id')}
+					 {/if}
+					 {assign var=HDDETAIL value=true}
+					 {if ($ASSIGNED_USER_ID eq $CURRENT_USER_ID) }
+						 {assign var=HDDETAIL value=false}
+					 {elseif (($CURRENT_USER_ID eq 1) or ($CURRENT_USER_ID eq 5) or ($CURRENT_USER_ID eq 7))}
+						 {assign var=HDDETAIL value=false}
+					 {/if}
+					 {if $FIELD_MODEL->getName() eq 'cf_921' and ( $HDDETAIL eq true)}
+						 无权限
+					 {else}
+						 <span class="value" data-field-type="{$FIELD_MODEL->getFieldDataType()}" {if $FIELD_MODEL->get('uitype') eq '19' or $FIELD_MODEL->get('uitype') eq '20' or $FIELD_MODEL->get('uitype') eq '21'} style="white-space:normal;" {/if}>
                         {include file=vtemplate_path($FIELD_MODEL->getUITypeModel()->getDetailViewTemplateName(),$MODULE_NAME) FIELD_MODEL=$FIELD_MODEL USER_MODEL=$USER_MODEL MODULE=$MODULE_NAME RECORD=$RECORD}
 					 </span>
-					 {if $IS_AJAX_ENABLED && $FIELD_MODEL->isEditable() eq 'true' && ($FIELD_MODEL->getFieldDataType()!=Vtiger_Field_Model::REFERENCE_TYPE) && $FIELD_MODEL->isAjaxEditable() eq 'true'}
-						 <span class="hide edit">
+
+						 {if $IS_AJAX_ENABLED && $FIELD_MODEL->isEditable() eq 'true' && ($FIELD_MODEL->getFieldDataType()!=Vtiger_Field_Model::REFERENCE_TYPE) && $FIELD_MODEL->isAjaxEditable() eq 'true'}
+							 <span class="hide edit">
 							 {include file=vtemplate_path($FIELD_MODEL->getUITypeModel()->getTemplateName(),$MODULE_NAME) FIELD_MODEL=$FIELD_MODEL USER_MODEL=$USER_MODEL MODULE=$MODULE_NAME}
-                             {if $FIELD_MODEL->getFieldDataType() eq 'multipicklist'}
-                                <input type="hidden" class="fieldname" value='{$FIELD_MODEL->get('name')}[]' data-prev-value='{$FIELD_MODEL->getDisplayValue($FIELD_MODEL->get('fieldvalue'))}' />
+								 {if $FIELD_MODEL->getFieldDataType() eq 'multipicklist'}
+									 <input type="hidden" class="fieldname" value='{$FIELD_MODEL->get('name')}[]' data-prev-value='{$FIELD_MODEL->getDisplayValue($FIELD_MODEL->get('fieldvalue'))}' />
                              {else}
                                  <input type="hidden" class="fieldname" value='{$FIELD_MODEL->get('name')}' data-prev-value='{Vtiger_Util_Helper::toSafeHTML($FIELD_MODEL->getDisplayValue($FIELD_MODEL->get('fieldvalue')))}' />
-                             {/if}
+								 {/if}
 						 </span>
+						 {/if}
 					 {/if}
 				 </td>
 			 {/if}

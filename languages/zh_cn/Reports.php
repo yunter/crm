@@ -89,6 +89,7 @@ $languageStrings = array(
 	'LBL_REPORT_PRINT' => '打印',
 	'LBL_REPORTS_LIST' => '报表列表',	
 	'LBL_REPORTS' => '报告列表',	
+	'LBL_ACHS' => '常规报表',
 	'LBL_RUN_REPORT' =>'运行报表',
 	'LBL_SAME_LEVEL_ROLES' => '同级角色',
 	'LBL_SCHEDULE_REPORTS' => '定期生成报告',

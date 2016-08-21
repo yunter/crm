@@ -12,6 +12,6 @@
 {strip}
     {assign var="FIELD_INFO" value=Zend_Json::encode($FIELD_MODEL->getFieldInfo())}
     <div class="row-fluid">
-        <input type="text" name="{$FIELD_MODEL->get('name')}" class="{if (($LISTVIEW_HEADER->get('column') != 'lastname') && ($LISTVIEW_HEADER->get('column') != 'firstname'))}span9 listSearchContributor{else}span10{/if}"  value="{$SEARCH_INFO['searchValue']}" data-fieldinfo='{$FIELD_INFO|escape}'/>
+        <input type="text" name="{$FIELD_MODEL->get('name')}" class="span6 listSearchContributor"  value="{$SEARCH_INFO['searchValue']}" data-fieldinfo='{$FIELD_INFO|escape}'/>
     </div>
 {/strip}
