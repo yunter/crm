@@ -2310,16 +2310,17 @@ function GetExclusiveCounts($userid = null) {
 	$result = 0;
 	if(!empty($userid)){
 		$adb = PearDatabase::getInstance();
-		//删除已转为客户的独占资源
-		$sql = "DELETE FROM vtiger_lead_exclusives WHERE vtiger_lead_exclusives.id IN ( 
+		try{
+			//删除已转为客户的独占资源
+			$sql = "DELETE FROM vtiger_lead_exclusives WHERE vtiger_lead_exclusives.id IN ( 
 					SELECT id FROM ( 
 						  SELECT vle.id FROM vtiger_lead_exclusives AS vle 
 						  LEFT JOIN vtiger_leaddetails ON vtiger_leaddetails.leadid = vle.leadid 
 						  WHERE vtiger_leaddetails.converted = 1 ) AS tmp )";
-		$adb->query($sql);
+			$adb->query($sql);
 
-		//插入状态未同步的资源
-		$sql = "INSERT INTO `vtiger_lead_exclusives` (	`userid`, `leadid`,	`exclusive`, `created`) SELECT	smcreatorid, leadid, '1', createdtime 
+			//插入状态未同步的资源
+			$sql = "INSERT INTO `vtiger_lead_exclusives` (	`userid`, `leadid`,	`exclusive`, `created`) SELECT	smcreatorid, leadid, '1', NOW() 
 				FROM (
 						SELECT vtiger_leadscf.leadid, vtiger_crmentity.smcreatorid, vtiger_crmentity.createdtime 
 						FROM vtiger_leadscf 
@@ -2329,20 +2330,23 @@ function GetExclusiveCounts($userid = null) {
 							AND vtiger_leaddetails.converted = 0 
 							AND vtiger_leadscf.leadid NOT IN ( 
 								SELECT leadid FROM vtiger_lead_exclusives ) ) AS tmp";
-		$adb->query($sql);
+			$adb->query($sql);
 
-		//删除未独占状态未同步的资源
-		$sql = "DELETE FROM vtiger_lead_exclusives 
+			//删除未独占状态未同步的资源
+			$sql = "DELETE FROM vtiger_lead_exclusives 
 				WHERE vtiger_lead_exclusives.id IN ( 
 					SELECT id from (
 						SELECT vtiger_lead_exclusives.id FROM vtiger_lead_exclusives 
 							LEFT JOIN vtiger_leaddetails ON vtiger_leaddetails.leadid = vtiger_lead_exclusives.leadid
 							LEFT JOIN vtiger_leadscf ON vtiger_leadscf.leadid = vtiger_leaddetails.leadid 
 							WHERE vtiger_leaddetails.converted = 0 AND vtiger_leadscf.cf_833 = '未独占' ) AS tmp)";
-		$adb->query($sql);
+			$adb->query($sql);
+		} catch (Exception $e) {
+			$log->debug($e);
+		}
 
 		//统计独占资源
-		$sql = "SELECT id FROM " . $tablePrefix . "lead_exclusives WHERE exclusive = 1 AND userid = " . $userid . "GROUP BY leadid ";
+		$sql = "SELECT id FROM " . $tablePrefix . "lead_exclusives WHERE exclusive = 1 AND userid = " . $userid . " GROUP BY leadid ";
 
 		$result = $adb->query($sql);
 		$result = $adb->num_rows($result);
