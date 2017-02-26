@@ -49,8 +49,8 @@ $languageStrings = array(
 );
 
 $jsLanguageStrings = array(
-	'JS_DUPLICTAE_CREATION_CONFIRMATION' => '组织名称已经存在。你想创建一个重复的记录吗？',
-	'LBL_DELETE_CONFIRMATION' => '删除此组织将删除其相关的销售机会与报价。你确定你要删除这个组织吗？',
-	'LBL_MASS_DELETE_CONFIRMATION' => '删除这些组织将删除其相关的机会与报价。你确定要删除选定的记录？',
+	'JS_DUPLICTAE_CREATION_CONFIRMATION' => '公司已经存在，请确认后再添加。',
+	'LBL_DELETE_CONFIRMATION' => '删除此公司将删除其相关的销售机会与报价。你确定你要删除这个公司吗？',
+	'LBL_MASS_DELETE_CONFIRMATION' => '删除这些公司将删除其相关的机会与报价。你确定要删除选定的记录？',
 	'LBL_RELATED_RECORD_DELETE_CONFIRMATION' => '您确定您要删除吗？',
 );

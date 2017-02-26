@@ -472,10 +472,12 @@ jQuery(document).ready(function() {
 				} else {
 					if('repeat' == msg.result.message){
 					    var tagP = $('[name="cf_833"]').parent().parent().parent().html();
-                        if(tagP.indexOf('td') == -1){
-                            $('[name="cf_833"]').parent().parent().parent().html('<span style="color:#e60000;text-align:center;">已独占</span>');
-                        } else {
-                            $('[name="cf_833"]').parent().parent().parent().hide();
+                        if(tagP) {
+                            if(tagP.indexOf('td') == -1){
+                                $('[name="cf_833"]').parent().parent().parent().html('<span style="color:#e60000;text-align:center;">已独占</span>');
+                            } else {
+                                $('[name="cf_833"]').parent().parent().parent().hide();
+                            }
                         }
 						alert("资源已被独占，请核实再操作。");
 					}

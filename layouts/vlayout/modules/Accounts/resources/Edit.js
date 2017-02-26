@@ -94,6 +94,9 @@ Vtiger_Edit_Js("Accounts_Edit_Js",{
                         thisInstance.duplicateCheckCache[accountName] = data['success'];
                         thisInstance.duplicateCheckCache['message'] = data['message'];
 						var message = app.vtranslate('JS_DUPLICTAE_CREATION_CONFIRMATION');
+						Vtiger_Helper_Js.showMessage(message);
+						thisInstance.duplicateCheckCache[accountName] = true;
+						/**
 						Vtiger_Helper_Js.showConfirmationBox({'message' : message}).then(
 							function(e) {
 								thisInstance.duplicateCheckCache[accountName] = false;
@@ -103,6 +106,7 @@ Vtiger_Edit_Js("Accounts_Edit_Js",{
 								
 							}
 						);
+						 **/
                     }
 				);
             }
@@ -110,6 +114,9 @@ Vtiger_Edit_Js("Accounts_Edit_Js",{
 			else {
 				if(thisInstance.duplicateCheckCache[accountName] == true){
 					var message = app.vtranslate('JS_DUPLICTAE_CREATION_CONFIRMATION');
+					Vtiger_Helper_Js.showMessage(message);
+					thisInstance.duplicateCheckCache[accountName] = true;
+					/**
 					Vtiger_Helper_Js.showConfirmationBox({'message' : message}).then(
 						function(e) {
 							thisInstance.duplicateCheckCache[accountName] = false;
@@ -119,6 +126,7 @@ Vtiger_Edit_Js("Accounts_Edit_Js",{
 							
 						}
 					);
+					 **/
 				} else {
 					delete thisInstance.duplicateCheckCache[accountName];
 					return true;

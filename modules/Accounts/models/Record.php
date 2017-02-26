@@ -70,7 +70,15 @@ class Accounts_Record_Model extends Vtiger_Record_Model {
 		if ($db->num_rows($result)) {
 			return true;
 		}
-		return false;
+
+        $query = "SELECT 1 FROM vtiger_leaddetails WHERE vtiger_leaddetails.company = ? ";
+        $params = array(decode_html($this->getName()));
+        $result = $db->pquery($query, $params);
+        if ($db->num_rows($result)) {
+            return true;
+        }
+
+        return false;
 	}
 
 	/**
