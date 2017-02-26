@@ -447,11 +447,11 @@ jQuery(document).ready(function() {
 	var obj = $('#cf_833_box');
 	var current_user_id  = $("#current_user_id").val();
 	var assigned_user_id =  $('[name="assigned_user_id"]').val();
-	if(obj != undefined && obj != '') {
+	if(typeof obj != "undefined" && obj != '') {
 		var fieldValue  = $('[name="cf_833"]').val();
 		var companyName = $("#Leads_editView_fieldName_company").val();
 
-		if((assigned_user_id != undefined) && (current_user_id != assigned_user_id)){
+		if((typeof assigned_user_id != "undefined") && (current_user_id != assigned_user_id)){
 			$('[name="cf_833"]').parent().parent().parent().html(fieldValue);
 		}
 		var dataStr = '';
@@ -471,6 +471,12 @@ jQuery(document).ready(function() {
 					 obj.html(msgStr);
 				} else {
 					if('repeat' == msg.result.message){
+					    var tagP = $('[name="cf_833"]').parent().parent().parent().html();
+                        if(tagP.indexOf('td') == -1){
+                            $('[name="cf_833"]').parent().parent().parent().html('<span style="color:#e60000;text-align:center;">已独占</span>');
+                        } else {
+                            $('[name="cf_833"]').parent().parent().parent().hide();
+                        }
 						alert("资源已被独占，请核实再操作。");
 					}
 				}
