@@ -96,6 +96,7 @@ Vtiger_Edit_Js("Accounts_Edit_Js",{
 						var message = app.vtranslate('JS_DUPLICTAE_CREATION_CONFIRMATION');
 						Vtiger_Helper_Js.showMessage(message);
 						thisInstance.duplicateCheckCache[accountName] = true;
+                        return false;
 						/**
 						Vtiger_Helper_Js.showConfirmationBox({'message' : message}).then(
 							function(e) {
@@ -116,6 +117,7 @@ Vtiger_Edit_Js("Accounts_Edit_Js",{
 					var message = app.vtranslate('JS_DUPLICTAE_CREATION_CONFIRMATION');
 					Vtiger_Helper_Js.showMessage(message);
 					thisInstance.duplicateCheckCache[accountName] = true;
+                    return false;
 					/**
 					Vtiger_Helper_Js.showConfirmationBox({'message' : message}).then(
 						function(e) {
