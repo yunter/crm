@@ -15,21 +15,36 @@ class Vtiger_DealExclusiveAjax_Action extends Vtiger_IndexAjax_View {
         }
         
         $fieldValue  = $request->get('fieldValue');
+        $fieldValue  = trim($fieldValue);
+
         $companyName = $request->get('companyName');
+        $companyName = trim($companyName);
+
         $response 	 = new Vtiger_Response();
         $response->setEmitType(Vtiger_Response::$EMIT_JSON);
         
         if(isset($user_id) && !empty($companyName) && ('已独占' == $fieldValue)){
-            $db 		 = PearDatabase::getInstance();
-            $sql         = "SELECT leadid FROM vtiger_leaddetails WHERE company LIKE '%{$companyName}%' limit 1";
-            $result		 = $db->query($sql);
-            $data		 = $db->fetch_array($result);
+            $db 		= PearDatabase::getInstance();
+            //check account repeat
+            $ACR_sql    = "SELECT accountid FROM vtiger_account WHERE accountname LIKE '%{$companyName}%' LIMIT 1";
+            $ACR_result = $db->query($ACR_sql);
+            $ACR_data   = $db->fetch_array($ACR_result);
+            if(!empty($ACR_data['accountid'])){
+                $response->setResult(array('success'=>false, 'message'=>'repeat'));
+                $response->emit();
+                exit;
+            }
 
-            if(!empty($data['leadid'])){
-                $sql			= "SELECT id FROM vtiger_lead_exclusives WHERE leadid={$data['leadid']} AND userid != {$user_id}";
-                $result		= $db->query($sql);
-                $data			= $db->fetch_array($result);
-                if(!empty( $data['id'])) {
+            //check lead repeat
+            $CLR_sql    = "SELECT leadid FROM vtiger_leaddetails WHERE company LIKE '%{$companyName}%' LIMIT 1";
+            $CLR_result = $db->query($CLR_sql);
+            $CLR_data   = $db->fetch_array($CLR_result);
+
+            if(!empty($CLR_data['leadid'])){
+                $VLE_sql    = "SELECT id FROM vtiger_lead_exclusives WHERE leadid={$CLR_data['leadid']} AND userid != {$user_id}";
+                $VLE_result = $db->query($VLE_sql);
+                $VLE_data   = $db->fetch_array($VLE_result);
+                if(!empty( $VLE_data['id'])) {
                     $response->setResult(array('success'=>false, 'message'=>'repeat'));
                     $response->emit();
                     exit;
