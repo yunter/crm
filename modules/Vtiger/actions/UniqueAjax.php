@@ -14,12 +14,27 @@ class Vtiger_UniqueAjax_Action extends Vtiger_IndexAjax_View {
 		$moduleName		= $tablePrefix . $sourceModule;
 		
 		$db 			= PearDatabase::getInstance();
+
+        $response 		= new Vtiger_Response();
+        $response->setEmitType(Vtiger_Response::$EMIT_JSON);
+
+        //check account repeat
+        if($feildName == 'company') {
+            $ACR_sql    = "SELECT accountid FROM vtiger_account WHERE accountname LIKE '%{$feildName}%' LIMIT 1";
+            $ACR_result = $db->query($ACR_sql);
+            $ACR_data   = $db->fetch_array($ACR_result);
+            if(!empty($ACR_data['accountid'])){
+                $response->setResult(array('success'=>false, 'message'=>vtranslate('LBL_RECORD_EXIST') ));
+                $response->emit();
+                exit;
+            }
+        }
+
 		$ExcludeSql		= (empty($record) || ($record == 'null'))? '' : " AND " . $this->getKeyField($sourceModule) . " != " . $record;
 		$sql 			= "SELECT $feildName FROM $moduleName WHERE $feildName = '". $unique_keyword . "'" . $ExcludeSql;
 		$result			= $db->query($sql);
 		$result			= $db->num_rows($result);
-		$response 		= new Vtiger_Response();
-		$response->setEmitType(Vtiger_Response::$EMIT_JSON);
+
 		if(!$result){
 			$response->setResult(array('success'=>true, 'message'=>vtranslate('LBL_RECORD_NONE') ));
 		} else {
