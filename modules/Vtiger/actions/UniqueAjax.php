@@ -22,8 +22,8 @@ class Vtiger_UniqueAjax_Action extends Vtiger_IndexAjax_View {
         if($feildName == 'company') {
             $ACR_sql    = "SELECT accountid FROM vtiger_account WHERE accountname LIKE '%{$feildName}%' LIMIT 1";
             $ACR_result = $db->query($ACR_sql);
-            $ACR_data   = $db->fetch_array($ACR_result);
-            if(!empty($ACR_data['accountid'])){
+            $ACR_data   = $db->num_rows($ACR_result);
+            if(!$ACR_data){
                 $response->setResult(array('success'=>false, 'message'=>vtranslate('LBL_RECORD_EXIST') ));
                 $response->emit();
                 exit;

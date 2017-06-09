@@ -28,8 +28,8 @@ class Vtiger_DealExclusiveAjax_Action extends Vtiger_IndexAjax_View {
             //check account repeat
             $ACR_sql    = "SELECT accountid FROM vtiger_account WHERE accountname LIKE '%{$companyName}%' LIMIT 1";
             $ACR_result = $db->query($ACR_sql);
-            $ACR_data   = $db->fetch_array($ACR_result);
-            if(!empty($ACR_data['accountid'])){
+            $ACR_data   = $db->num_rows($ACR_result);
+            if(!$ACR_data){
                 $response->setResult(array('success'=>false, 'message'=>'repeat'));
                 $response->emit();
                 exit;
@@ -41,10 +41,10 @@ class Vtiger_DealExclusiveAjax_Action extends Vtiger_IndexAjax_View {
             $CLR_data   = $db->fetch_array($CLR_result);
 
             if(!empty($CLR_data['leadid'])){
-                $VLE_sql    = "SELECT id FROM vtiger_lead_exclusives WHERE leadid={$CLR_data['leadid']} AND userid != {$user_id}";
+                $VLE_sql    = "SELECT id FROM vtiger_lead_exclusives WHERE leadid={$CLR_data['leadid']} AND userid != {$user_id} LIMIT 1";
                 $VLE_result = $db->query($VLE_sql);
-                $VLE_data   = $db->fetch_array($VLE_result);
-                if(!empty( $VLE_data['id'])) {
+                $VLE_data   = $db->num_rows($VLE_result);
+                if(!$VLE_data) {
                     $response->setResult(array('success'=>false, 'message'=>'repeat'));
                     $response->emit();
                     exit;
